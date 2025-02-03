@@ -1,0 +1,93 @@
+
+\section{Finite Element Method (FEM)}
+
+FEM er en numerisk metode for å løse PDE ved å diskretisere domenet i enkle geometriske former (elementer) og tilnærme løsningen med en lineærkombinasjon av basisfunksjoner.
+
+\begin{equation}
+    u(x) \approx \sum_{i=1}^N c_i \phi_i(x)
+\end{equation}
+
+\subsection*{Betingelser for FEM}
+
+For å bruke FEM til å løse et differensiallikningsproblem, må problemet oppfylle følgende betingelser:
+
+\begin{itemize}
+    \item \textbf{Linearitet:} Problemet må være lineært, dvs. ligningene kan uttrykkes som \(\mathcal{L}(u) = f\), hvor \(\mathcal{L}\) er en lineær operator.
+    \item \textbf{Kontinuerlig Differensierbar:} Løsningen \( u(x) \) må være kontinuerlig differensierbar i domenet \( \Omega \).
+    \item \textbf{Geometrisk Enkelhet:} Domenet \( \Omega \) bør kunne deles opp i enkle geometriske elementer (f.eks. trekanter, firkanter i 2D, tetraedre i 3D):
+          \[
+              \Omega = \bigcup_{e=1}^{E} \Omega_e
+          \]
+    \item \textbf{Kvantiserbarhet:} Problemet må være kvantiserbart, dvs. løsningen kan tilnærmes godt ved hjelp av en endelig basisfunksjon:
+          \[
+              u_h(x) = \sum_{i=1}^{N} c_i \phi_i(x)
+          \]
+    \item \textbf{Randbetingelser:} Randbetingelsene må være kompatible med valg av funksjonsrom:
+          \[
+              u|_{\partial \Omega} = g \quad \text{eller} \quad \frac{\partial u}{\partial n}\bigg|_{\partial \Omega} = h
+          \]
+\end{itemize}
+
+\subsection*{FEM-oppskrift}
+
+\begin{enumerate}
+    \item \textbf{Diskretisering:} Del domenet \( \Omega \) inn i enkle geometriske elementer \( \Omega_e \) og tilnærme løsningen med en lineærkombinasjon av basisfunksjoner:
+          \[
+              u(x) \approx \sum_{i=1}^N c_i \phi_i(x)
+          \]
+    \item \textbf{Svak formulering:} Multipliser differensiallikningen med en testfunksjon \( v(x) \) og integrer over domenet \( \Omega \):
+          \[
+              \int_\Omega v(x) \mathcal{L}(u) \, dx = \int_\Omega v(x) f(x) \, dx
+          \]
+
+    \item \textbf{Galerkin-prosedyre:} Tilnærme løsningen og testfunksjonen med basisfunksjoner:
+            \[
+                u(x) \approx \sum_{i=1}^N c_i \phi_i(x) \quad \text{og} \quad v(x) \approx \sum_{j=1}^N d_j \phi_j(x)
+            \]
+    \item \textbf{Diskretisering:} Set inn tilnærmingene i den svake formen og diskretiser:
+          \[
+              \sum_{j=1}^N d_j \int_\Omega \phi_j(x) \mathcal{L} \left( \sum_{i=1}^N c_i \phi_i(x) \right) \, dx = \sum_{j=1}^N d_j \int_\Omega \phi_j(x) f(x) \, dx
+          \]
+    \item \textbf{Matriseform:} Skriv den diskretiserte formen som et ligningssett \( A\vec{c} = \vec{b} \) og løs for koeffisientene \( \vec{c} \).
+\end{enumerate}
+
+
+\begin{definition}{Viktige definisjoner for FEM}{}
+    \begin{enumerate}
+        \item \textbf{Skalarprodukt} \(\langle v, w \rangle\): Integral av produktet av to funksjoner over domenet \(\Omega\):
+              \[ \langle v, w \rangle = \int_\Omega v(x)w(x) \, dx \]
+              ofte er \(\Omega := (0,1)\).
+        \item \textbf{Funksjonsrommet} \(V\): Rommet av funksjoner som tilfredsstiller randbetingelsene.
+
+              \[ V = \{ v \in C^2(\Omega) \, | \, v(a) = \alpha, v(b) = \beta \} \]
+
+        \item \textbf{Testfunksjoner} \(v(x)\): Funksjoner i \(V\) som brukes til å formulere den svake formen.
+        \item \textbf{Basisfunksjoner} \(\phi_i(x)\): Lokale funksjoner som spenner ut løsningsrommet.
+              \begin{itemize}
+                  \item Har kompakt støtte (er null utenfor et lite område)
+                  \item Oppfyller \(\phi_i(x_j) = \delta_{ij}\) (Kronecker delta)
+              \end{itemize}
+        \item \textbf{Energifunksjon} \(F(v) = \frac{1}{2} \langle v, v \rangle - \langle f, v \rangle\): Energien til en funksjon \(v\). Kan intuitivt tolkes som en måling av hvor mye energi som kreves for å produsere \(v\).
+    \end{enumerate}
+\end{definition}
+
+Først trenger vi å formulere problemet. f.eks. for en Poisson-ligning:
+\begin{equation}
+    \begin{cases}
+        -\ddn[2]{u(x)}{x} = f(x),  & x \in (0,1)              \\
+        u(0) = \alpha, \quad u(1) = \beta & \text{(randbetingelser)}
+    \end{cases}
+    \label{eq:pde_poisson}
+\end{equation}
+
+\begin{equation}
+    \mathbf{F} = - \int_0^1 f(x) \mathbf{N}(x) dx
+\end{equation}
+
+La \(f(x) = \bar{f}\) være konstant.
+
+\begin{equation*}
+    \mathbf{F} = - \bar{f} \int_0^1 \mathbf{N}(x) dx = - \bar{f} \begin{bmatrix}
+        0.1 \\ 0.2 \\ 0.2 \\ 0.2 \\ 0.2 \\ 0.1
+    \end{bmatrix}
+\end{equation*}

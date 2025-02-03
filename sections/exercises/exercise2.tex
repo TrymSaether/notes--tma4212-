@@ -1,0 +1,84 @@
+\section*{Øving 2}
+
+Denne øvingen bruker differanseoperatorer som forklart i Brynjulf Owren sitt kapittel 2.2.4. La \( u : \mathbb{R} \to \mathbb{R} \) være en tilstrekkelig deriverbar funksjon, og definer \( u_m = u(x_m) \) på et ekvidistant gitter \( \{x_m\} \), hvor \( x_{m+1} = x_m + h \) for alle \( m \).
+
+\small\textit{Note: For kompakthet er \(u^{(k)} = u^{(k)}(x_m)\)}
+
+
+
+\subsection*{Problem 1}
+
+\subitem{(a) Sentral- og gjennomsnittsoperatorer \(\mu_h \delta_h u_m = \frac{1}{2} \left( u_{m+1} - u_{m-1} \right)\).}
+
+\begin{align*}
+    \frac{1}{2} \left( u_{m+1} - u_{m-1} \right) & = \mu_h \delta_h u_m                                                                                                                                                                  \\
+                                                 & = \mu_h \left( u_{m+\frac{1}{2}} - u_{m-\frac{1}{2}} \right)                                                                                                                          \\
+                                                 & = \frac{1}{2} ( u_{(m + \frac{1}{2}) + \frac{1}{2}} + u_{(m + \frac{1}{2}) - \frac{1}{2}}) - \frac{1}{2} ( u_{(m - \frac{1}{2}) + \frac{1}{2}} + u_{(m - \frac{1}{2}) - \frac{1}{2}}) \\
+                                                 & = \frac{1}{2} ( u_{m+1} + u_m)- \frac{1}{2} ( u_m + u_{m-1})                                                                                                                          \\
+                                                 & = \frac{1}{2} ( u_{m+1} - u_{m-1}) \quad \square
+\end{align*}
+
+\subitem{(b) Foroverdifferanseoperator \(\frac{1}{h^k} \Delta_h^k u_m = \frac{d^k u}{dx^k}(x_m) - \tau_m\) for \( k = 1, 2, 3 \).}
+
+\subitem{(c) Bakoverdifferanseoperator \(\frac{1}{h} \sum_{j=1}^k \frac{1}{j} \nabla_h^j u_m = u_x(x_m) + \tau_m \) for \( k = 1, 2, 3 \).}
+
+\begin{align*}
+    \frac{1}{h} \sum_{j=1}^k \frac{1}{j} \nabla_h^j u_m &= \frac{1}{h} \left( \nabla_h u_m + \frac{1}{2} \nabla_h^2 u_m + \frac{1}{3} \nabla_h^3 u_m \right) \\
+                                                        &= (u_m - u_{m-1}) + \frac{1}{2}(u_{m} - 2u_{m-1} + u_{m-2}) + \frac{1}{3}(u_{m} - 3u_{m-1} + 3u_{m-2} - u_{m-3}) \\
+\end{align*}
+
+
+\subsection*{Problem 2}
+
+Gitt to-punkts randverdi-problemet:
+
+\[
+    u_{xx} + \frac{2}{x^3} u^3 = 0, \quad 1 < x < 2,
+\]
+
+med randbetingelser:
+
+\[
+    8u_x(1) - 2u(1) = 1, \quad u(2) = \frac{2}{3}.
+\]
+
+
+\subitem{(b) Verifiser at \( u(x) = \frac{x}{x+1} \) er den eksakte løsningen.}
+
+\begin{align*}
+    u_x(x)                     & = \frac{1}{(x+1)^2}                                      \\
+    u_{xx}(x)                  & = -\frac{2}{(x+1)^3}                                     \\
+    u_{xx} + \frac{2}{x^3} u^3 & = -\frac{2}{(x+1)^3} + \frac{2}{x^3} \frac{x^3}{(x+1)^3} \\
+                               & = \frac{-2 + 2}{(x+1)^3} = 0 \quad \square
+\end{align*}
+
+\subitem{(b) Sett opp et andreordens differanseskjema for problemet på et ekvidistant gitter med steglengde \( h = 1/M \), inkludert randbetingelsene.}
+
+Del intervallet $[1, 2]$ i $M$ like deler med skrittlengde $h = 1/M$ og knutepunktene $x_i = 1 + i \cdot h$. Ved bruk av sentrale differanser blir:
+\[
+    \frac{u_{i+1} - 2u_i + u_{i-1}}{h^2} + \frac{2}{x_i^3} u_i^3 = 0, \quad i = 1, 2, \ldots, M-1.
+\]
+
+\[
+    \begin{cases}
+     8u_x(1) - 2u(1)  = 1 \implies 8\frac{u_1 - u_0}{h} - 2u_0 = 1 \implies u_1 = u_0 + \frac{h}{8}(1 + 2u_0) \\
+        u_M = \frac{2}{3}
+    \end{cases}
+\]
+
+Systemet for $u_1, u_2, \ldots, u_{M-1}$ er gitt ved:
+\begin{align}
+    \frac{u_{i+1} - 2u_i + u_{i-1}}{h^2} + \frac{2}{x_i^3} u_i^3 & = 0, \quad i = 1, 2, \ldots, M-1,                       \\
+    u_1                                                          & = u_0 + \frac{h}{8}(1 + 2u_0), \quad u_M = \frac{2}{3}.
+\end{align}
+Dette er et ikke-lineært system og kan løses numerisk med iterative metoder som Newtons metode.
+
+\subitem[(c)] Implementer skjemaet, og finn den numeriske løsningen for \( M = 10 \).
+
+
+\subitem[(d)] Estimer ordenen til skjemaet numerisk ved å løse ligningen for forskjellige verdier av \( M \) og sammenligne feilene.
+
+
+
+
+\end{document}

@@ -1,6 +1,6 @@
 INFO:  latexindent.pl version 3.24.4, 2024-07-18, a script to indent .tex files
        latexindent.pl lives here: /opt/homebrew/Cellar/latexindent/3.24.4_1/libexec/bin/
-       Tue Feb  4 12:10:12 2025
+       Mon Feb 10 09:26:09 2025
        Filename: /Users/saether/Library/CloudStorage/OneDrive-NTNU/Skole/Fysikk og matematikk - Master/3. År/6. semester/Numerical Solution of Differential Equations by Difference Methods/notes (tma4212)/sections/__latexindent_temp_lectures.tex
 INFO:  Processing switches:
        -y|--yaml: YAML settings specified via command line

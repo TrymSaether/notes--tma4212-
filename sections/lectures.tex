@@ -20,7 +20,7 @@
       \draw[->,thick,blue] (0,0) -- (1,0);
       \draw[->,thick,blue] (0,0) -- (0,1);
       \node[above] at (0.5,-0.5) {Explicit Euler};
-      \node[above] at (0.5,-0.8) {$O(\Delta t^2, \Delta x)$};
+      \node[above] at (0.5,-0.8) {\(O(\Delta t^2, \Delta x)\)};
     \end{scope}
 
     % Implicit Euler (Backward)
@@ -31,7 +31,7 @@
       \draw[->,thick,red] (-1,0) -- (0,0);
       \draw[->,thick,red] (0,-1) -- (0,0);
       \node[above] at (0,-0.5) {Implicit Euler};
-      \node[above] at (0,-0.8) {$O(\Delta t^2, \Delta x)$};
+      \node[above] at (0,-0.8) {\(O(\Delta t^2, \Delta x)\)};
     \end{scope}
 
     % Crank-Nicolson
@@ -44,7 +44,7 @@
       \draw[->,thick,green!50!black] (-1,0) -- (1,0);
       \draw[->,thick,green!50!black] (0,-1) -- (0,1);
       \node[above] at (0,-0.5) {Crank-Nicolson};
-      \node[above] at (0,-0.8) {$O(\Delta t^2, \Delta x^2)$};
+      \node[above] at (0,-0.8) {\(O(\Delta t^2, \Delta x^2)\)};
     \end{scope}
   \end{tikzpicture}
   \caption{Stencils for different numerical schemes}
@@ -174,8 +174,8 @@
 \begin{tikzpicture}[scale=1.5]
   % Grid
   \draw[step=0.25cm,gray!30] (-1,-1) grid (2.5,2.5);
-  \draw[->] (-1,0) -- (2.5,0) node[right] {$m$};
-  \draw[->] (0,-0.5) -- (0,2.5) node[above] {$n$};
+  \draw[->] (-1,0) -- (2.5,0) node[right] {m};
+  \draw[->] (0,-0.5) -- (0,2.5) node[above] {n};
 
   % Triangle
   \draw[-,thick] (-1,0) -- (0.5,2);
@@ -257,13 +257,13 @@
 
 \subparagraph{1st order system}
 \begin{itemize}
-  \item Non-conservative: \[\bf{u_t} + A(\bf{u}_x) = \bf{b}\tag{3}\]\label{eq:hb3}
-  \item Conservative: \[\bf{u_t} + (\bf{f}(\bf{u}))_x = 0\]
+  \item Non-conservative: \[\symbf{u_t} + A(\symbf{u}_x) = \symbf{b}\tag{3}\]\label{eq:hb3}
+  \item Conservative: \[\symbf{u_t} + (\symbf{f}(\symbf{u}))_x = 0\]
         This is hyperbolic if \(A\) is diagonalizable with real eigenvalues.
         \[
           A = PDP^{-1} \quad \text{where} \quad D = \text{diag}(\lambda_1, \ldots, \lambda_n)
         \]
-        Equivalently, if the Jacobian matrix of \(\bf{f}\) is diagonalizable with real eigenvalues.
+        Equivalently, if the Jacobian matrix of \(\symbf{f}\) is diagonalizable with real eigenvalues.
 
         For linear problems (Hyperbolic PDEs),\eqref{eq:hb1} can always be written as \eqref{eq:hb3}.
         \eqref{eq:hb3} can always be decoupled into a set of \eqref{eq:hb2} equations.
@@ -278,7 +278,7 @@ Initial values: \(\begin{cases} x(t_0) = x_0 \\ v(t_0) = u(x_0, t_0) \end{cases}
 
 \begin{align*}
   x(t) & = \mathcal{X}(t; t_0, x_0), \quad x_0 = x(t_0) = \mathcal{X}^{-1}(x, t)               \\
-  v(t) & = \mathcal{V}(t; x_0, t_0, u_0), \quad u(x,t) = \mathcal{V}(t, ¶mathcal{X}^{-1}(x,t))
+  v(t) & = \mathcal{V}(t; x_0, t_0, u_0), \quad u(x,t) = \mathcal{V}(t, \mathcal{X}^{-1}(x,t))
 \end{align*}
 
 \begin{example}{\(u_t + a u_x = b\) where \(a, b\) can be functions of \(x, t, u\)}{}
@@ -325,7 +325,7 @@ Initial values: \(\begin{cases} x(t_0) = x_0 \\ v(t_0) = u(x_0, t_0) \end{cases}
     u_t + e^{-x}u_x = 0, \quad u(x,0) = u_0(x)
   \]
 
-  \bf{Method of Characteristics:}
+  \textbf{Method of Characteristics:}
   \begin{align*}
     \dot{x} & = e^{-x}, \quad x(0) = x_0             \\
     \dot{v} & = 0, \quad v(0) = u(x_0, 0) = u_0(x_0)
@@ -336,3 +336,207 @@ Initial values: \(\begin{cases} x(t_0) = x_0 \\ v(t_0) = u(x_0, t_0) \end{cases}
   \end{align*}
 
 \end{example}
+
+
+\subsection{Onsdag \date{10. februar 2025}}
+
+\paragraph{What about systems?}
+
+\begin{align*}
+  \symbf{u_t} + A(\symbf{u}_x)                           & = \symbf{0} \\
+  \symbf{u_t} + P\Lambda P^{-1}(\symbf{u}_x)             & = \symbf{0} \\
+  P^{-1}\symbf{u_t} + \Lambda P^{-1}\Lambda(symbf{u}_x) & = \symbf{0} \\
+  \symbf{v_t} + \Lambda \symbf{v}_x                      & = \symbf{0}
+\end{align*}
+
+Hyperbolic if \(A\) is diagonalizable with real eigenvalues: \(A = P\Lambda P^{-1}\) where \(\Lambda = \text{diag}(\lambda_1, \ldots, \lambda_n)\).
+
+\begin{example}{}{}
+  \begin{align*}
+    \symbf{v_{i,t} + \lambda_i v_{i,x} = 0}                                  \\
+    \symbf{u}_t +
+    \begin{bmatrix}
+      a & b \\
+      c & d
+    \end{bmatrix}
+    \symbf{u}_x = \symbf{0} \quad \text{where} \quad x\in [0,1], \quad t \geq 0 \\
+    \symbf{u}(x,0) = \symbf{f}(x) \quad \text{is the initial curve}
+  \end{align*}
+
+  Then the eigenvalues are \(\lambda_{1,2} = a \pm b\) with eigenvectors
+  \[
+    P = \begin{bmatrix}
+      1 & 1  \\
+      1 & -1
+    \end{bmatrix}
+  \]
+  and
+  \[
+    \symbf{v} = P^{-1}\symbf{u} \implies \symbf{u} = P\symbf{v}
+  \]
+
+  then we get the system
+
+  \begin{align*}
+    \symbf{v}_{1,t} + (a + b)\symbf{v}_{1,x} & = 0 \\
+    \symbf{v}_{2,t} + (a - b)\symbf{v}_{2,x} & = 0
+  \end{align*}
+
+  assume that \(a > 0\), with the BCs
+  \[
+    x=0 \quad \text{inflow if } \lambda > 0 \quad \vee quad x = 1 \quad \text{outflow if } \lambda < 0
+  \]
+
+  \subparagraph{Case 1}
+  \[
+    a > b \quad \text{and} \quad \lambda_1, \lambda_2 > 0
+  \]
+
+
+
+\end{example}
+
+
+\paragraph{Scheming}
+\[
+  \symbf{u}_t + a \symbf{u}_x = 0 , \quad b \in \R \quad \symbf{u}(x,0) = \symbf{f}(x)
+\]
+
+%draw Grid
+\begin{tikzpicture}[scale=1.5]
+  % Grid
+  \draw[step=0.25cm,gray!30] (-1,-1) grid (3,3);
+  \draw[->] (-1,-1) -- (3,-1) node[right] {$x$};
+  \draw[->] (-1,-1) -- (-1,3) node[above] {$t$};
+
+  % Points
+  \filldraw[black] (1,1) circle (2pt) node[below right] {$(m,n)$};
+  \filldraw[black] (0,1) circle (2pt) node[below left] {$(m-1,n)$};
+  \filldraw[black] (1,2) circle (2pt) node[above right] {$(m,n+1)$};
+  \filldraw[black] (2,1) circle (2pt) node[below right] {$(m+1,n)$};
+  \filldraw[black] (1,0) circle (2pt) node[below right] {$(m,n-1)$};
+
+  % Stencils
+  \draw[->,thick] (1,1) -- (1,2);
+  \draw[->,thick] (1,1) -- (2,1);
+  \draw[->,thick] (1,1) -- (0,1);
+  \draw[->,thick] (1,1) -- (1,0);
+
+  % Stencil 2 (Orange)
+  \draw[-,thick,blue] (-1,-1) -- (1,1);
+  \draw[-,thick,blue] (3,-1) -- (1,1);
+
+  % Stencil 3 (red, outside)
+  \draw[-,thick,red] (-1.5,-1) -- (1,1);
+
+  % Stencil 4 (green, curved inside)
+  \draw[-,thick,green] (-1,-1) to [out=0,in=25] (1,1);
+
+
+
+\end{tikzpicture}
+
+\subparagraph{Central Time, Central Space}
+\[
+  \frac{1}{k}\left( U_m^{n+1} - U_m^{n-1} \right) = \frac{1}{h}\left( U_{m+1}^n - U_{m-1}^n \right)
+\]
+
+\subparagraph{Forward Time, Central Space}
+\[
+  \frac{1}{k}\left( U_m^{n+1} - U_m^n \right) = \frac{1}{h}\left( U_{m+1}^n - U_{m-1}^n \right)
+\]
+
+´
+Then
+\[
+  U_m^{n+1} = \beta_{-1} U_{m-1}^n + \beta_0 U_m^n + \beta_1 U_{m+1}^n
+\]
+
+Assume that \(\beta_{-1} \neq 0\) and \(\beta_1 \neq 0\), then the method is unconditionally unstable.
+
+\begin{align*}
+  T = k n                                                     \\
+  x_{m-n} = \mathcal{X} - \dfrac{T}{k}h = \mathcal{X} - \mu T \\
+  x_{m+n} = \mathcal{X} + \dfrac{T}{k}h = \mathcal{X} + \mu T
+\end{align*}
+
+Interval of dependence: \(\left[ \mathcal{X} - \mu T, \mathcal{X} + \mu T \right]\)
+
+Domain of dependence: Triangle of this and \((X,T)\).
+
+\subparagraph{Characteristics}
+
+\begin{align*}
+  x = x_0 + at \implies x_0 = x - at \quad \text{goes through} \quad (\mathcal{X}, T) \\
+  x_0 = \mathcal{X} - \mu T \quad \text{CFL condition} \\
+  \text{We need} \quad x_0 = \mathcal{X} - \mu T \in [X - \mu T, X + \mu T] \\
+  \abs{a} \frac{k}{h} \leq 1 \quad \text{CFL condition}
+\end{align*}
+
+\subparagraph{Forward Time, Backward Space}
+\[
+  \frac{1}{k}\left( U_m^{n+1} - U_m^n \right) = a \frac{1}{h}\left( U_m^n - U_{m-1}^n \right)
+\]
+
+Let \(p = a \frac{k}{h}\), then
+
+\[
+  U_m^{n+1} = U_m^n + p(U_{m-1}^n - U_m^n)
+\]
+
+\subparagraph{Von Neumann Stability Analysis}
+\[
+  U_m^n = \xi^n e^{i\beta m} \quad \beta \in \R
+\]
+
+Stable if there is a \(\mu> 0\) such that \(\abs{\xi} \leq 1 + \mu k \).
+
+For the FTBS scheme, we get
+
+\begin{align*}
+  \xi^{n+1} e^{i\beta m} & = \xi^n e^{i\beta m} + p\xi^n\left( e^{i\beta m} - e^{i\beta (m-1)} \right) \\
+  \xi                   & = 1 - p(1 - e^{-i\beta h}) = (1 - p) + pe^{-i\beta h}                            \\
+\end{align*}
+
+Here we can see that \(\abs{\xi} \) is just a circle in the complex plane with radius \(p\) and center \((1-p)\).
+
+\begin{tikzpicture}[scale=2]
+  % Parameters
+  \def\p{0.5}
+
+  % Axes
+  \draw[->] (-0.5,0) -- (1.5,0) node[right] {Re};
+  \draw[->] (0,-1) -- (0,1) node[above] {Im};
+  
+  % Unit circle
+  \draw[dashed] (0,0) circle (1);
+  
+  % Circle representing xi
+  \draw[blue] (1-\p,0) circle (\p);
+  
+  % Center point
+  \fill[red] (1-\p,0) circle (1pt) node[below] {$1-p$};
+  
+  % Radius label
+  \draw[<->] (1-\p,0) -- ++(0,\p) node[midway,right] {$p$};
+\end{tikzpicture}
+
+So the scheme is stable if \(\abs{\xi} \leq 1 \) if \(0 < p \leq 1\) or \(0 < a \frac{k}{h} \leq 1\).
+
+What happens if we have \(a < 0\)? In this case the condition \(\abs{\xi} \leq 1 \) for all \( \beta \) is not satisfied.
+
+\subparagraph{Forward Time, Central Space}
+
+\[
+  U_m^{n+1} = U_m^n - \frac{p}{2}\left( U_{m+1}^n - U_{m-1}^n \right)
+\]
+
+Then we get the stability condition:
+
+\begin{align*}
+  \xi & = 1 - \frac{p}{2}\left( e^{i\beta h} - e^{-i\beta h} \right) = 1 - p\sin(\beta h) \\
+  \abs{\xi} & = \sqrt{(1 - p\sin^2(\beta h))} = 1 - p\sin(\beta h) \leq 1
+\end{align*}
+
+
+

@@ -1,4 +1,4 @@
-\section{Endelig differansemetoder (FDM)}
+\section{Endelig differansemetoder}
 
 FDM er en numerisk metode for å løse ODE og PDE ved å diskretisere domenet og tilnærme den deriverte med differanser.
 
@@ -98,15 +98,6 @@ For å beregne den deriverte numerisk, må du så dividere med \(h^n\), der \(n\
     \item \(m\) er halvparten av stencilens bredde (f.eks. 3 for en 7-punkts stencil).
     \item \(c_k\) er dimensjonsløse koeffisienter.
 \end{itemize}
-\begin{example}{4 deriverte med framoverdifferanser}{}
-    For å tilnærme den fjerde deriverte av en funksjon \(f(x)\) med en 7-punkts fremoverdifferanse, bruker vi formelen:
-
-    \[
-        \frac{d^4 f}{dx^4} \Bigg|_{x_i} \approx \frac{1}{h^4} \left( c_{-3} f(x_{i-3}) + c_{-2} f(x_{i-2}) + c_{-1} f(x_{i-1}) + c_0 f(x_i) + c_1 f(x_{i+1}) + c_2 f(x_{i+2}) + c_3 f(x_{i+3}) \right)
-    \]
-
-    Koeffisientene for en 7-punkts fremoverdifferanse er gitt i tabellen.
-\end{example}
 
 \begin{table}[H]
     \centering
@@ -173,7 +164,7 @@ For å beregne den deriverte numerisk, må du så dividere med \(h^n\), der \(n\
           \(\;f(x_{i+k}) \leftrightarrow \text{koeffisient under kolonne }k\).
     \item Etter at koeffisientene er multiplisert med funksjonsverdiene, \emph{divider med} \(h^n\) for en \(n\)-te deriverte.
     \item Fremover/bakover-stenciler brukes ofte nær kantene av et domene for å unngå ute-av-rekkevidde-punkter.
-    \item Sentrerte differanser gir vanligvis mindre feilkonstanter i indre punkter, men krever funksjonsverdier på begge sider av \(x_i\).
+    \item Sentrerte differanser gir vanligvis høyere nøyaktighet enn fremover- eller bakoverdifferanser, siden de utnytter symmetrien rundt punktet ved å bruke naboverdier likt på begge sider.
 \end{itemize}
 
 

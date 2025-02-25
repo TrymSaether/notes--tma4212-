@@ -1,6 +1,6 @@
-\section{Forelesninger}
+\chapter{Forelesninger}
 
-\subsection{Forelesning 8: Tirsdag \date{28. januar 2025}}
+\section{Forelesning 8 (Tirsdag \date{28. januar 2025})}
 
 \begin{theorem}{Lax-Equivalence-Theorem}{}
   \[
@@ -197,7 +197,7 @@ The method is based on the Fourier analysis of the numerical solution.
     \abs{\psi}                 & = \abs{1 + 4r\sin^2\left(\frac{\beta h}{2}\right)} \leq 1 \iff r \leq \frac{1}{2}, \forall \beta \text{ and } \mu = 0
   \end{align*}
 \end{example}
-\subsection{Forelesning 9: Mandag \date{3. februar 2025}}
+\section{Forelesning 9 (Mandag \date{3. februar 2025})}
 
 \paragraph{Von Neumann Stability Analysis}
 
@@ -341,16 +341,14 @@ The method is based on the Fourier analysis of the numerical solution.
 
   \subparagraph{Consistency}
   \begin{align*}
-    \tau_m^n
-     & =
-     & \frac{1}{2k}\left( u_m^{n+1} - u_m^{n-1} \right)                                                 \\
-     & - \frac{1}{h^2}\left( u_{m-1}^n - u_{m+1}^n \right)                                              \\
-     & + \frac{1}{h^2}\left( u_m^{n+1} - u_m^{n-1} \right)                                              \\
-     & =
-     & \frac{1}{2k}\left[ 2k u_t + 2k^3 \frac{1}{3!}u_{tt} + \ldots \right]                             \\
-     & -\frac{1}{h^2}\left[ 2u + 2h^2 \frac{1}{2!}u_{xx} + 2h^4 \frac{1}{4!}u_{xxxx} + \ldots \right]   \\
-     & + \frac{1}{h^2}\left[ 2 u + 2k^2 \frac{1}{2!}u_{tt} + 2k^4 \frac{1}{4!}u_{tttt} + \ldots \right] \\
-     & =
+    \tau_m^n & = \frac{1}{2k}\left( u_m^{n+1} - u_m^{n-1} \right)                                               \\
+             & - \frac{1}{h^2}\left( u_{m-1}^n - u_{m+1}^n \right)                                              \\
+             & + \frac{1}{h^2}\left( u_m^{n+1} - u_m^{n-1} \right)                                              \\
+             & =                                                                                                \\
+             & \frac{1}{2k}\left[ 2k u_t + 2k^3 \frac{1}{3!}u_{tt} + \ldots \right]                             \\
+             & -\frac{1}{h^2}\left[ 2u + 2h^2 \frac{1}{2!}u_{xx} + 2h^4 \frac{1}{4!}u_{xxxx} + \ldots \right]   \\
+             & + \frac{1}{h^2}\left[ 2 u + 2k^2 \frac{1}{2!}u_{tt} + 2k^4 \frac{1}{4!}u_{tttt} + \ldots \right] \\
+             & =
     u_t - u_xx
     + \frac{k^2}{h^2}u_{tt} + \frac{k^2}{3!}u_{tt}
     + \frac{h^2}{12}u_{xxxx} + \frac{k^4}{12h^2}u_{tttt}
@@ -380,7 +378,7 @@ The method is based on the Fourier analysis of the numerical solution.
   \draw[-,thick] (2,0) -- (0.5,2);
 
 \end{tikzpicture}
-\subsection{Forelesning 10: Tirsdag \date{4. februar 2025}}
+\section{Forelesning 10 (Tirsdag \date{4. februar 2025})}
 
 \paragraph{Hyperbolic PDEs}
 
@@ -535,7 +533,7 @@ Initial values: \(\begin{cases} x(t_0) = x_0 \\ v(t_0) = u(x_0, t_0) \end{cases}
   \end{align*}
 
 \end{example}
-\subsection{Forelesning 11: Mandag \date{10. februar 2025}}
+\section{Forelesning 11 (Mandag \date{10. februar 2025})}
 
 \paragraph{What about systems?}
 
@@ -736,8 +734,7 @@ Then we get the stability condition:
 \end{align*}
 
 \clearpage
-
-\subsection{Forelesning 12 (\date{11. februar 2025})}
+\section{Forelesning 12 (Tirsdag\date{11. februar 2025})}
 
 \begin{definition}{Courant-Friedrichs-Lewy condition (CFL)}{cfl}
   The CFL condition is a necessary condition for the stability of a numerical scheme for solving PDEs.
@@ -951,4 +948,807 @@ For the complete problem we get:
   \end{align*}
 
 \end{example}
+\section{Forelesning 13 (Mandag \date{17. februar 2025})}
 
+\subsection{Hyperbolic Conservation Laws}
+
+\paragraph{Euler's Equations in Gas Dynamics}
+Consider the 1D Euler system:
+\begin{align*}
+  \rho_t + (\rho u)_x           & = 0, \\
+  (\rho u)_t + (\rho u^2 + p)_x & = 0, \\
+  E_t + \bigl(u(E + p)\bigr)_x  & = 0,
+\end{align*}
+where
+\begin{align*}
+  \rho = \rho(x,t) \; \text{(density)},\quad
+  u = u(x,t) \; \text{(velocity)},\quad
+  p = p(x,t) \; \text{(pressure)},\quad
+  E = E(x,t) \; \text{(total energy)}.
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.2]
+    % Draw the tube
+    \draw[thick] (0,1) -- (6,1);
+    \draw[thick] (0,-1) -- (6,-1);
+
+    % Cross section at left
+    \draw[thick] (0,-1) arc (-90:90:1);
+    % Cross section at right
+    \draw[thick] (6,-1) arc (-90:90:1);
+
+    % Flow arrows (blue)
+    \foreach \x in {1,2,3,4,5}
+      {
+        \draw[->,thick,blue] (\x,-0.5) -- (\x+0.5,-0.5);
+        \draw[->,thick,blue] (\x,0) -- (\x+0.5,0);
+        \draw[->,thick,blue] (\x,0.5) -- (\x+0.5,0.5);
+      }
+
+    % Labels
+    \node[above] at (3,1.2) {\(\rho,\;u,\;p,\;E\)};
+    \node[below] at (3,-1.2) {Flow direction};
+
+    % Cross section labels
+    \draw[<->] (-0.5,-1) -- (-0.5,1) node[midway,left] {Area};
+  \end{tikzpicture}
+\end{figure}
+
+\begin{itemize}
+  \item \(\rho(x,t)\) is the density of the gas.
+  \item \(u(x,t)\) is the velocity of the gas.
+  \item \(\rho\,u\) is the mass flux (mass per unit time).
+  \item The mass in the interval \([a,b]\) at time \(t\) is
+        \[
+          m(t) \;=\; \int_a^b \rho(x,t)\,\mathrm{d}x
+        \]
+  \item Differentiating \(m(t)\) in time and using the Divergence Theorem (or the Fundamental Theorem of Calculus) leads to
+        \begin{align*}
+          \frac{d}{dt}\int_{a}^{b} \rho(x,t)\,dx
+                                   & = \int_a^b \rho_t(x,t)\,\mathrm{d}x               \\
+                                   & = \rho(a,t)\,u(a,t) \;-\; \rho(b,t)\,u(b,t)       \\
+                                   & = - \int_a^b \bigl(\rho\,u\bigr)_x \,\mathrm{d}x
+          \\
+          \implies \quad
+          \rho_t \;+\; (\rho\,u)_x & = 0
+          \quad\tag{Conservation of mass}.
+        \end{align*}
+  \item Similarly, one obtains
+        \[
+          (\rho\,u)_t + (\rho\,u^2 + p)_x = 0
+          \quad\tag{Conservation of momentum},
+        \]
+        and
+        \[
+          E_t + \bigl(u(E + p)\bigr)_x = 0
+          \quad\tag{Conservation of energy}.
+        \]
+  \item Here \(p = p(\rho,\rho u,E)\) and \(E = E(\rho,\rho u,p)\) are related by the equation of state (e.g., an ideal gas law).
+  \item \textbf{Vector form}:
+        \[
+          \begin{bmatrix}
+            \rho   \\
+            \rho u \\
+            E
+          \end{bmatrix}_t
+          +
+          \begin{bmatrix}
+            \rho u       \\
+            \rho u^2 + p \\
+            u(E + p)
+          \end{bmatrix}_x
+          = 0,
+          \quad
+          p = p(\rho,\rho u,E),\quad
+          E = E(\rho,\rho u,p).
+        \]
+\end{itemize}
+
+\paragraph{General Hyperbolic Conservation Law}
+In general, a (1D) hyperbolic conservation law has the form
+\[
+  \mathbf{u}_t \;+\; \bigl(\mathbf{f}(\mathbf{u})\bigr)_x \;=\; 0,
+\]
+where
+\[
+  \mathbf{u}
+  =
+  \begin{bmatrix}
+    u_1    \\
+    u_2    \\
+    \vdots \\
+    u_n
+  \end{bmatrix}
+  \quad\text{is the vector of conserved variables,}
+  \quad
+  \mathbf{f}(\mathbf{u})
+  =
+  \begin{bmatrix}
+    f_1(\mathbf{u}) \\
+    f_2(\mathbf{u}) \\
+    \vdots          \\
+    f_n(\mathbf{u})
+  \end{bmatrix}
+  \quad\text{is the flux function.}
+\]
+The Jacobian matrix \(\mathbf{f}'(\mathbf{u})\) has real eigenvalues and is diagonalizable in a hyperbolic system.
+
+\smallskip
+
+\textbf{From now on}, we often focus on a \emph{scalar} conservation law:
+\[
+  u_t + \bigl(f(u)\bigr)_x = 0.
+\]
+
+\paragraph{Burgers' Equation (scalar prototype)}
+\[
+  u_t + \left(\tfrac12\,u^2\right)_x = 0,
+  \quad
+  \text{or equivalently}
+  \quad
+  u_t + u\,u_x = 0.
+\]
+
+\smallskip
+Let \(m(t) = \int_a^b u(x,t)\,\mathrm{d}x\). By an analogous argument, the flux boundary terms appear:
+\[
+  \frac{d\,m}{dt}
+  \;=\;
+  \int_a^b u_t(x,t)\,\mathrm{d}x
+  \;=\;
+  f(a,t)\;-\;f(b,t),
+\]
+which again expresses conservation of mass (or the conserved quantity).
+
+\paragraph{Conservative Schemes (Finite Difference Discretization)}
+Consider a one-step scheme of the form
+\[
+  U_m^{n+1}
+  \;=\;
+  U_m^n
+  \;-\;
+  p\,\Bigl[F\bigl(U_m^n,\,U_{m+1}^n\bigr) \;-\; F\bigl(U_{m-1}^n,\,U_m^n\bigr)\Bigr],
+\]
+where \(p\) is the CFL-like factor \(\frac{k}{h}\) (time-step over space-step), and \(F(\cdot,\cdot)\) is called the \emph{numerical flux} function.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.5]
+    % Axes
+    \draw[->] (-1,0) -- (3,0) node[right] {$x$};
+    \draw[->] (0,-1) -- (0,3) node[above] {$t$};
+
+    % Points
+    \filldraw[black] (0,0) circle (1.5pt) node[below left] {$U_{m-1}^n$};
+    \filldraw[black] (1,0) circle (1.5pt) node[below] {$U_{m}^n$};
+    \filldraw[black] (2,0) circle (1.5pt) node[below right] {$U_{m+1}^n$};
+    \filldraw[black] (1,1) circle (1.5pt) node[above] {$U_{m}^{n+1}$};
+
+    % Arrows showing dependencies
+    \draw[->,thick,blue] (0,0) -- (1,0);
+    \draw[->,thick,blue] (1,0) -- (1,1);
+    \draw[->,thick,blue] (2,0) -- (1,0);
+
+    % Dashed lines for cell boundaries
+    \draw[dashed,red] (0.5,-0.25) -- (0.5,0.75);
+    \draw[dashed,red] (1.5,-0.25) -- (1.5,0.75);
+
+    % Flux indicators
+    \node[red, left] at (0.5,0.25) {$F(U_{m-1}^n,\,U_m^n)$};
+    \node[red, right] at (1.5,0.25) {$F(U_{m}^n,\,U_{m+1}^n)$};
+  \end{tikzpicture}
+  \caption{Conservative scheme stencil with fluxes.}
+\end{figure}
+
+\noindent
+\textbf{Why is this conservative?}
+
+If we define
+\[
+  \mathbf{U}^n
+  \;=\;
+  \begin{bmatrix}
+    U_1^n  \\
+    U_2^n  \\
+    \vdots \\
+    U_M^n
+  \end{bmatrix},
+\]
+then we can interpret the sum of discrete values as approximating an integral (for example, via the trapezoidal rule or midpoint rule). One shows that the scheme
+\[
+  U_m^{n+1}
+  \;=\;
+  U_m^n
+  \;-\;
+  p\,\Bigl[
+  F(U_m^n,\,U_{m+1}^n) \;-\; F(U_{m-1}^n,\,U_m^n)
+  \Bigr]
+\]
+implies the total sum
+\(\sum_{m=1}^{M-1} U_m^n\) changes by discrete boundary terms only, analogous to the continuum case
+\(\int_a^b u_t\,dx = f(a,t) - f(b,t)\). This ensures conservation in discrete form.
+
+\subsection{Example: Transport Equation}
+
+Consider the linear transport (advection) equation
+\[
+  u_t + a\,u_x = 0,
+  \quad a>0,
+  \quad
+  \text{with } p := a\,\frac{k}{h}.
+\]
+A classic upwind (FTBS) scheme is:
+\[
+  U_m^{n+1}
+  \;=\;
+  U_m^n - p\Bigl(U_m^n - U_{m-1}^n\Bigr)
+  \;=\;
+  U_m^n - p\Bigl[f(U_m^n) - f(U_{m-1}^n)\Bigr],
+\]
+where \(f(u) = a\,u\). This scheme is conservative with the numerical flux
+\[
+  F\bigl(U_m^n,\,U_{m+1}^n\bigr) = a\,U_m^n = f(U_m^n).
+\]
+
+\paragraph{Burger's Equation}
+\[
+  u_t + \frac{1}{2}\bigl(u^2\bigr)_x = 0
+  \quad\Leftrightarrow\quad
+  u_t + u\,u_x = 0.
+\]
+
+\subsection{Lax--Friedrichs Scheme}
+A well-known conservative scheme is the Lax--Friedrichs method:
+\[
+  U_m^{n+1}
+  \;=\;
+  \frac12\,\bigl(U_{m+1}^n + U_{m-1}^n\bigr)
+  \;-\;
+  \frac{p}{2}\,\Bigl(f(U_{m+1}^n) - f(U_{m-1}^n)\Bigr).
+\]
+Its numerical flux is often written as
+\[
+  F\bigl(U_m^n,\,U_{m+1}^n\bigr)
+  \;=\;
+  \frac12\Bigl(f(U_m^n)+f(U_{m+1}^n)\Bigr)
+  \;-\;
+  \frac{\alpha}{2}\,\bigl(U_{m+1}^n - U_m^n\bigr),
+\]
+where \(\alpha\) is some stability-related term (often chosen \(\alpha = \max |f'(u)|\) over relevant states). This guarantees stability and conservation.
+
+\subsection{Lax--Wendroff Scheme}
+For a conservation law \(u_t + (f(u))_x = 0\) with \(a(u) = f'(u)\), the Lax--Wendroff update reads:
+\[
+  U_m^{n+1}
+  =
+  U_m^n
+  \;-\;
+  \frac{p}{2}\Bigl[f(U_{m+1}^n)-f(U_{m-1}^n)\Bigr]
+  \;+\;
+  \frac{p^2}{2}\Bigl[
+    a_{m+\tfrac12}\,\bigl(U_{m+1}^n - U_m^n\bigr)
+    \;-\;
+    a_{m-\tfrac12}\,\bigl(U_m^n - U_{m-1}^n\bigr)
+    \Bigr],
+\]
+where
+\[
+  a_{m\pm\tfrac12}
+  =
+  \begin{cases}
+    \tfrac12\bigl(a(U_m^n)+a(U_{m\pm1}^n)\bigr),            & \text{(Lax--Friedrichs approach)}, \\[6pt]
+    a\!\Bigl(\tfrac12\bigl(U_m^n + U_{m\pm1}^n\bigr)\Bigr), & \text{(Lax--Wendroff approach)}.
+  \end{cases}
+\]
+Here, \(a(u) = \frac{d}{du}f(u)\). The difference between the two choices mainly lies in how you approximate \(a(u)\) at the half-integer points.
+
+\section{Forelesning 14 (Tirsdag \date{18. februar 2025})}
+
+\subsection{Elliptic PDEs}\footnote{Section 6 in B.O.}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.5]
+    % Draw the main Omega domain with a "squiggly" border
+    \draw[thick] plot [smooth cycle, tension=0.8] coordinates {
+        (0,0) (1,0.5) (2,0) (1.5,-1) (0,-0.5) (-1,-1) (-1.5,0) (-0.5,1)
+      };
+
+    % Add colored arcs for different boundary segments
+    \draw[red, ultra thick] (2,0) arc (0:-45:1) node[right] {$\partial\Omega_D$};
+    \draw[blue, ultra thick] (1.5,-1) arc (-90:-180:1) node[below] {$\partial\Omega_N$};
+    \draw[green!50!black, ultra thick] (-1.5,0) arc (180:90:1) node[left] {$\partial\Omega_R$};
+
+    % Label the domain
+    \node at (0,0) {$\Omega$};
+
+    % Normal vector example
+    \draw[->, thick] (1,0.5) -- (1.3,0.8) node[right] {$\vec{n}$};
+
+    % Some discrete grid points as an illustration
+    \foreach \x in {-1,-0.5,0,0.5,1}
+    \foreach \y in {-0.5,0,0.5}
+    \filldraw[black] (\x,\y) circle (0.5pt);
+
+    % Boundary legend
+    \node[right] at (2.2,1) {
+      \begin{tabular}{ll}
+        \textcolor{red}{$\partial\Omega_D$}:            & Dirichlet \\
+        \textcolor{blue}{$\partial\Omega_N$}:           & Neumann   \\
+        \textcolor{green!50!black}{$\partial\Omega_R$}: & Robin
+      \end{tabular}
+    };
+  \end{tikzpicture}
+\end{figure}
+
+\paragraph{Boundary Conditions}
+\begin{itemize}
+  \item \textbf{Dirichlet:} \(u = g\) on \(\partial\Omega_D\).
+  \item \textbf{Neumann:} \(\frac{\partial u}{\partial \vec{n}} = \vec{n}\cdot\nabla u = g\) on \(\partial\Omega_N\).
+  \item \textbf{Robin (Mixed):} \(\alpha\,u + \beta\,\frac{\partial u}{\partial n} = g\) on \(\partial\Omega_R\).
+\end{itemize}
+
+\[
+  \partial \Omega \;=\;
+  \overline{\partial \Omega_D \;\cup\; \partial\Omega_N \;\cup\; \partial\Omega_R}.
+\]
+
+\begin{enumerate}
+  \item Find a finite difference scheme (FDS) for the model problem.
+  \item Implement and test the method.
+  \item Perform an error analysis.
+  \item Discuss how to handle more complicated boundaries and irregular grids.
+\end{enumerate}
+
+\subsubsection{Model Problem (Poisson Equation)}
+\[
+  \begin{cases}
+    u_{xx} + u_{yy} = f(x,y), & \text{in } \Omega = (0,1) \times (0,1),                               \\[6pt]
+    u = g,                    & \text{on } \partial \Omega_D \;\; (x=0,\,x=1,\,y=0,\,\text{or}\,y=1).
+  \end{cases}
+\]
+
+\begin{enumerate}
+  \item \emph{FDS:} Discretize the domain and boundary:
+        \[
+          \Omega_h = \{(x_i,y_j)\,|\,x_i = i\,h,\;y_j = j\,h,\;i,j=0,1,\ldots,N\},
+        \]
+        \[
+          \partial\Omega_{D,h} = \{(x_i,y_j)\,\in\,\Omega_h \;\mid\; i=0\text{ or }i=N\text{ or }j=0\text{ or }j=N\},
+        \]
+        \[
+          \mathring{\Omega}_h = \Omega_h \setminus \partial\Omega_{D,h}.
+        \]
+
+  \item \emph{Test:} Implement the method with central finite differences. For example,
+        \[
+          u_{xx}(x_i,y_j) \;\approx\; \frac{u_{i+1,j} - 2\,u_{i,j} + u_{i-1,j}}{h^2}
+          \;+\;\frac{h^2}{6}\,\partial_x^4u(x_i,y_j),
+        \]
+        and similarly for \(u_{yy}\). Then
+        \[
+          \frac{1}{h^2}\bigl(U_{i+1,j} + U_{i,j+1} - 4\,U_{i,j} + U_{i-1,j} + U_{i,j-1}\bigr)
+          \;=\; f_{i,j}.
+        \]
+
+  \item \emph{Computational Stencil:}
+        Let \(P=(x_i,y_j)\), \(E=(x_{i+1},y_j)\), \(N=(x_i,y_{j+1})\), \(W=(x_{i-1},y_j)\), and \(S=(x_i,y_{j-1})\). Then
+        \[
+          U_{i,j}
+          \;=\;
+          \frac{1}{4}\Bigl(U_{i+1,j} \;+\; U_{i,j+1} \;+\; U_{i-1,j} \;+\; U_{i,j-1}\Bigr)
+          \;-\;
+          \frac{h^2}{4}\,f_{i,j}.
+        \]
+        Or equivalently:
+        \[
+          U_N + U_E + U_W + U_S \;-\;4\,U_P = h^2\,f_P,
+          \quad P \in \mathring{\Omega}_h.
+        \]
+
+  \item \emph{Error Analysis:} Estimate \(\|u - U\|\) in an appropriate norm. The standard result shows an \(\mathcal{O}(h^2)\) error for sufficiently smooth \(u\).
+\end{enumerate}
+
+\begin{definition}{Natural Ordering}{}
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Grid
+      \draw[step=1cm,gray!30] (0,0) grid (3,3);
+
+      % Node points
+      \foreach \x in {0,1,2,3}
+      \foreach \y in {0,1,2,3} {
+          \filldraw[black] (\x,\y) circle (2pt);
+        }
+
+      % Example labeling for natural ordering inside
+      \node[above] at (1,1) {1};
+      \node[above] at (2,1) {2};
+      \node[above] at (1,2) {4};
+      \node[above] at (2,2) {5};
+
+      % Boundary points labeled g
+      \foreach \x in {0,3}
+      \foreach \y in {0,1,2,3}
+      \node[blue, above right] at (\x,\y) {g};
+
+      \foreach \x in {1,2}
+      \foreach \y in {0,3}
+      \node[blue, above] at (\x,\y) {g};
+
+      % Arrows for ordering
+      \draw[->] (1,1) -- (2,1);
+      \draw[->] (2,1) -- (1,2);
+      \draw[->] (1,2) -- (2,2);
+
+      % Equations on right
+      \node[right] at (3.5,2) {$u_{i,j} = U_k$};
+      \node[right] at (3.5,1.5) {$k = i \;+\;(j-1)(N-1)$};
+      \node[right] at (3.5,1) {$1 \le i,j \le N-1$};
+    \end{tikzpicture}
+    \caption{Natural ordering of interior grid points.}
+  \end{figure}
+
+  In matrix form, the 5-point stencil leads to:
+  \[
+    \frac{1}{h^2}
+    \begin{bmatrix}
+      -4     & 1      & 0      & \cdots & 0      & 1      & 0      & \cdots & 0      \\
+      1      & -4     & 1      & \cdots & 0      & 0      & 1      & \cdots & 0      \\
+      0      & 1      & -4     & \cdots & 0      & 0      & 0      & \cdots & 0      \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+      1      & 0      & 0      & \cdots & -4     & 1      & 0      & \cdots & 0      \\
+      0      & 1      & 0      & \cdots & 1      & -4     & 1      & \cdots & 0      \\
+      \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+      0      & 0      & 0      & \cdots & 0      & 1      & 0      & \cdots & -4
+    \end{bmatrix}
+    \begin{bmatrix}
+      U_{1,1} \\
+      U_{2,1} \\
+      \vdots  \\
+      U_{1,2} \\
+      U_{2,2} \\
+      \vdots  \\
+      U_{N-1,N-1}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      f_{1,1} - \frac{1}{h^2}(g_W + g_S) \\
+      f_{2,1} - \frac{1}{h^2}\,g_S       \\
+      \vdots                             \\
+      f_{1,2} - \frac{1}{h^2}\,g_W       \\
+      f_{2,2}                            \\
+      \vdots                             \\
+      f_{N-1,N-1} - \frac{1}{h^2}(g_E + g_N)
+    \end{bmatrix}.
+  \]
+
+\end{definition}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1]
+    % Grid
+    \draw[step=0.25,gray!30] (0,0) grid (4,4);
+
+    % Domain boundary
+    \draw[thick] (0,0) rectangle (4,4);
+
+    % Axes
+    \draw[->] (-0.4,0) -- (4.8,0) node[right] {$x$};
+    \draw[->] (0,-0.4) -- (0,4.8) node[above] {$y$};
+
+    % Label domain
+    \node at (2,2) {$\Omega$};
+
+    % Boundary conditions
+    \node[left] at (0,2) {$u=g$};
+    \node[right] at (4,2) {$u=g$};
+    \node[below] at (2,0) {$u=g$};
+    \node[above] at (2,4) {$u=g$};
+
+    % Stencil points
+    \filldraw[red] (2,2) circle (2pt) node[below right,black,scale=0.7] {$(i,j)$};
+    \filldraw[blue] (2.8,2) circle (2pt) node[right,black,scale=0.7] {E $(i+1,j)$};
+    \filldraw[blue] (2,2.8) circle (2pt) node[above,black,scale=0.7] {N $(i,j+1)$};
+    \filldraw[blue] (1.2,2) circle (2pt) node[left,black,scale=0.7] {W $(i-1,j)$};
+    \filldraw[blue] (2,1.2) circle (2pt) node[below,black,scale=0.7] {S $(i,j-1)$};
+
+    % Arrows
+    \draw[->,thick] (2,2) -- (2.8,2);
+    \draw[->,thick] (2,2) -- (2,2.8);
+    \draw[->,thick] (2,2) -- (1.2,2);
+    \draw[->,thick] (2,2) -- (2,1.2);
+
+    % Equation labels
+    \node[below] at (2,-0.8) {$u_{xx} + u_{yy} = f(x,y)$};
+
+    % Coefficients in the stencil
+    \node[red] at (2,2) [above right] {$-4$};
+    \node[blue] at (2.8,2) [above] {$1$};
+    \node[blue] at (2,2.8) [right] {$1$};
+    \node[blue] at (1.2,2) [above] {$1$};
+    \node[blue] at (2,1.2) [right] {$1$};
+
+    % Mesh size
+    \draw[<->, thick] (0,-0.3) -- (1,-0.3);
+    \node at (0.5,-0.3) {$h$};
+
+    % Discrete formula
+    \node[align=center] at (2,-1.6) {
+    $\displaystyle \frac{U_{i,j+1} + U_{i+1,j} + U_{i-1,j} + U_{i,j-1} - 4\,U_{i,j}}{h^2} \;=\; f_{i,j}.$
+    };
+  \end{tikzpicture}
+\end{figure}
+
+\paragraph{Matrix Form}
+Define
+\[
+  \mathbf{A} \;=\;
+  \operatorname{blocktridiag}\bigl(B,\;I,\;I\bigr)
+  \;\in\;\mathbb{R}^{(M-1)^2 \times (M-1)^2},
+\]
+where
+\[
+  B \;=\;
+  \operatorname{tridiag}(1,\,-4,\,1)
+  \;\in\;\mathbb{R}^{(M-1)\times(M-1)}.
+\]
+Hence, \(\mathbf{A}\) is large but \emph{sparse} and \emph{banded}. For example, if \(M=100\), then \(\mathbf{A}\in \mathbb{R}^{9801\times 9801}\). Efficient iterative solvers (e.g., Gauss--Seidel, CG, GMRES) can exploit this sparsity.
+
+\begin{definition}{5-Point Formula}{5_pnt_formula}
+  The \emph{5-point formula} for discretizing the Poisson equation
+  \[
+    u_{xx} + u_{yy} = f
+  \]
+  is
+  \[
+    U_{i,j}
+    \;=\;
+    \frac{1}{4}
+    \bigl(U_{i+1,j} + U_{i,j+1} + U_{i-1,j} + U_{i,j-1}\bigr)
+    \;-\;
+    \frac{h^2}{4}\,f_{i,j}.
+  \]
+  It approximates each interior grid point \(U_{i,j}\) using its four neighbors and has a local truncation error of \(\mathcal{O}(h^2)\).
+\end{definition}
+
+
+\section{Forelesning 15 (Mandag \date{24. februar 2025})}
+\subsection{Poisson's Equation on the Unit Square with a Regular Grid}
+
+Let \(\Omega = (0,1)\times(0,1)\). We consider the boundary \(\partial\Omega\) to be the edges of the unit square. Define the operator \(\mathcal{L}u = \Delta u = u_{xx} + u_{yy}\), and assume
+\[
+  \begin{cases}
+    \mathcal{L}u = f & \text{in } \Omega,           \\
+    u = g            & \text{on } \partial\Omega_D.
+  \end{cases}
+\]
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.5]
+    % Grid 
+    \draw[step=0.5cm,gray!30] (0,0) grid (3,3);
+    % Domain (blue boundary for the unit square)
+    \draw[thick,blue] (0,0) rectangle (3,3);
+    % Axes
+    \draw[->] (-0.4,0) -- (3.8,0) node[right] {$x$};
+    \draw[->] (0,-0.4) -- (0,3.8) node[above] {$y$};
+    % Label domain
+    \node at (1.5,1.5) {$\Omega$};
+    \node[below] at (1.5,-0.4) {$\partial\Omega_D$};
+    % Label boundary conditions
+    \node[left]  at (0,1.5) {$u=g$};
+    \node[right] at (3,1.5) {$u=g$};
+    \node[below] at (1.5,0) {$u=g$};
+    \node[above] at (1.5,3) {$u=g$};
+
+    % Center point and neighbors (P = point, N = north, S = south, E = east, W = west)
+    \filldraw[red]  (1.5,1.5) circle (2pt) node[below] {$P(i,j)$};
+    \filldraw[blue] (2.5,1.5) circle (2pt) node[below]  {$E(i+1,j)$};
+    \filldraw[blue] (1.5,2.5) circle (2pt) node[above] {$N(i,j+1)$};
+    \filldraw[blue] (0.5,1.5) circle (2pt) node[below]  {$W(i-1,j)$};
+    \filldraw[blue] (1.5,0.5) circle (2pt) node[below] {$(i,j-1)$};
+
+    % Connect points with dashed lines
+    \draw[gray,dashed] (0.5,1.5) -- (2.5,1.5);
+    \draw[gray,dashed] (1.5,0.5) -- (1.5,2.5);
+
+    % Coefficient labels
+    \node[red]  at (1.5,1.5) [above right] {$-4$};
+    \node[blue] at (2.5,1.5) [above]       {$1$};
+    \node[blue] at (1.5,2.5) [right]       {$1$};
+    \node[blue] at (0.5,1.5) [above]       {$1$};
+    \node[blue] at (1.5,0.5) [right]       {$1$};
+
+    % Mesh size label
+    \draw[<->] (1.5,1.8) -- (2.5,1.8) node[midway,above] {$h$};
+
+  \end{tikzpicture}
+\end{center}
+
+\paragraph{5-Point Formula}
+A common finite-difference approximation for \(u_{xx} + u_{yy}\) on a uniform grid (spacing \(h\)) is:
+\[
+  \Delta u \;\approx\; \frac{1}{h^2}\bigl(u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4u_{i,j}\bigr).
+\]
+
+\paragraph{Error Analysis}
+We want to find an upper bound for the error
+\[
+  e_{i,j} \;=\; u_{i,j} - U_{i,j},
+\]
+where \(U_{i,j}\) denotes the discrete solution. Typically, we can show
+\[
+  |e_{i,j}| \;\le\; C_1\,h^2 \;+\; C_2\,h^4,
+  \quad
+  \text{for interior points } (i,j) \in \mathring{\Omega}_h.
+\]
+
+\subparagraph{Local Truncation Error}
+Define the local truncation error by
+\[
+  \tau_p \;=\; \mathcal{L}_h\,u_p \;-\; f_p,
+\]
+where \(\mathcal{L}_h\) is the discrete operator applied to the \emph{exact} solution \(u\). For interior grid points \(p\in \mathring{\Omega}_h\), we would like
+\[
+  \mathcal{L}_h\,u_p \;=\; f_p.
+\]
+On the boundary, \(\tau_p\) might be nonzero if we enforce boundary conditions in a particular way. We will use the discrete maximum principle to show that the global error is controlled by the local truncation error.
+
+\subparagraph{Maximum Principle (Continuous)}
+Let \(\Omega \subset \mathbb{R}^2\) be open and connected, and let \(v\) be a sufficiently smooth function on \(\overline{\Omega}\). Suppose \(\mathcal{L}u = u_{xx} + u_{yy}\).
+
+\begin{itemize}
+  \item If \(\mathcal{L}u \ge 0\) in \(\Omega\) and \(u = v\) on \(\partial\Omega\), then \(v \le \max_{\partial\Omega} v\).
+  \item If \(\mathcal{L}u \le 0\) in \(\Omega\) and \(u = v\) on \(\partial\Omega\), then \(v \ge \min_{\partial\Omega} v\).
+  \item If \(\mathcal{L}u = 0\) in \(\Omega\) and \(u = v\) on \(\partial\Omega\), then both the minimum and maximum of \(v\) are attained on the boundary.
+\end{itemize}
+
+\paragraph{Discrete Maximum Principle (5-Point Formula)}
+Let \(\{v_p\}_{p \in \Omega_h}\) be values at the grid points, and define the discrete operator
+\[
+  \mathcal{L}_h\,v_p
+  \;=\;
+  \frac{1}{h^2}\bigl(v_E + v_N + v_W + v_S - 4\,v_P\bigr),
+\]
+where \(E, N, W, S\) denote the east, north, west, and south neighbors of \(p\), respectively.
+
+\begin{itemize}
+  \item If \(\mathcal{L}_h\,v_p \;\ge\; 0\) for all interior points \(p \in \Omega_h\), then for each interior point \(P\),
+        \[
+          v_P \;\le\; \max_{R \in \partial\Omega_h} v_R.
+        \]
+  \item If \(\mathcal{L}_h\,v_p \;\le\; 0\) for all interior points \(p \in \Omega_h\), then for each interior point \(P\),
+        \[
+          v_P \;\ge\; \min_{R \in \partial\Omega_h} v_R.
+        \]
+\end{itemize}
+
+\begin{proof}[Proof by contradiction]
+  Suppose \(\mathcal{L}_h\,v_p \ge 0\) in \(\Omega_h\). Assume there exists an interior point \(p^\star\) such that
+  \[
+    v_{p^\star} \;=\; \max_{p \in \overline{\Omega}_h} v_p.
+  \]
+  Then \(v_{p^\star} \ge v_{E^\star}, v_{N^\star}, v_{W^\star}, v_{S^\star}\). From
+  \[
+    \mathcal{L}_h v_{p^\star} \;=\; \frac{1}{h^2}\Bigl(v_{E^\star} + v_{N^\star} + v_{W^\star} + v_{S^\star} - 4\,v_{p^\star}\Bigr) \;\ge\; 0,
+  \]
+  we get
+  \[
+    4\,v_{p^\star} \;\le\; v_{E^\star} + v_{N^\star} + v_{W^\star} + v_{S^\star} \;\le\; 4\,v_{p^\star},
+  \]
+  which forces
+  \[
+    v_{p^\star} \;=\; v_{E^\star} \;=\; v_{N^\star} \;=\; v_{W^\star} \;=\; v_{S^\star}.
+  \]
+  Repeating this argument outward toward the boundary shows that \(v\) is constant or attains its maximum on the boundary. Hence
+  \[
+    \max_{p \in \overline{\Omega}_h} v_p \;=\; \max_{R \in \partial\Omega_h} v_R.
+  \]
+  An analogous argument applies for \(\mathcal{L}_h\,v_p \le 0\).
+\end{proof}
+
+\paragraph{Local Truncation Error (Detailed)}
+Let
+\[
+  \tau_p
+  \;=\;
+  \mathcal{L}_h\,u_p - f_p
+  \;=\;
+  \mathcal{L}_h\,u_p \;-\; \mathcal{L}u_p.
+\]
+For \(\mathcal{L}_h\) given by
+\[
+  \mathcal{L}_h\,U_p
+  \;=\;
+  \frac{1}{h^2}\bigl(\delta_x^2\,U_p + \delta_y^2\,U_p\bigr),
+\]
+one can show (via Taylor expansions) that
+\[
+  \tau_p
+  \;=\;
+  -\,\frac{h^2}{12}\Bigl(\partial_x^4 u\,(x_i + \xi_i h,\,y_j)\;+\;\partial_y^4 u\,(x_i,\;y_j + \eta_j h)\Bigr)
+\]
+for some \(\xi_i,\eta_j \in (-1,1)\). Hence, if
+\[
+  K \;=\; \max_{\Omega}\bigl\{|\partial_x^4 u|,\;|\partial_y^4 u|\bigr\},
+\]
+then
+\[
+  |\tau_p| \;\le\; \frac{h^2}{12}\,K \;=\; \overline{\tau}.
+\]
+Defining the error \(e_p = u_p - U_p\), we obtain
+\[
+  \mathcal{L}_h\,e_p
+  \;=\;
+  \tau_p,
+  \quad
+  p \in \mathring{\Omega}_h,
+  \quad
+  \text{and}
+  \quad
+  e_R = 0 \;\;\text{for}\; R \in \partial\Omega_h.
+\]
+
+\paragraph{Error Bound via a Lifting Function \(\phi\)}
+To apply the discrete maximum principle, we often seek a polynomial \(\phi\) such that:
+
+\begin{itemize}
+  \item \(\mathcal{L}_h\,\phi_p = \text{constant}\) or \(0\),
+  \item \(\phi\) is easy to compute on the boundary.
+\end{itemize}
+
+We use
+\[
+  \mathcal{L}_h\,(e_p + \overline{\tau}\,\phi_p)
+  \;=\;
+  \tau_p + \overline{\tau}\,\bigl(\mathcal{L}_h \phi_p\bigr).
+\]
+If we choose \(\phi\) so that \(\mathcal{L}_h \phi_p = 1\), then
+\[
+  \mathcal{L}_h (e_p + \overline{\tau}\,\phi_p) \;=\; \tau_p + \overline{\tau} \;\ge\; 0,
+\]
+and applying the discrete maximum principle gives
+\[
+  e_p + \overline{\tau}\,\phi_p
+  \;\le\;
+  \max_{R \in \partial\Omega_h} \bigl(e_R + \overline{\tau}\,\phi_R\bigr)
+  \;=\;
+  \overline{\tau} \,\max_{R \in \partial\Omega_h}\phi_R,
+\]
+since \(e_R = 0\) on the boundary. This implies
+\[
+  e_p
+  \;\le\;
+  \overline{\tau}\,
+  \Bigl(\max_{R \in \partial\Omega_h}\phi_R - \phi_p\Bigr)
+  \;\le\;
+  \overline{\tau}\,
+  \Bigl(\max_{\partial\Omega_h}\phi - \min_{\partial\Omega_h}\phi\Bigr).
+\]
+
+\subparagraph{A Concrete Choice of \(\phi\)}
+\[
+  \phi \;=\; \frac12\,x^2
+  \quad\Longrightarrow\quad
+  \Delta \phi \;=\; 1,
+\]
+and one can check
+\(\mathcal{L}_h\,\phi \approx 1\) for a suitable discrete approximation. Consequently, \(\max_{\partial\Omega_h} \phi = \tfrac{1}{2}\), and \(\min_{\overline{\Omega}_h}\phi = 0\). Hence,
+\[
+  |e_p|
+  \;\le\;
+  \overline{\tau}
+  \;=\;
+  \frac{h^2}{12}\,K,
+  \quad
+  \text{where}
+  \quad
+  K \;=\;
+  \max_{\Omega}\bigl\{|\partial_x^4 u|,\;|\partial_y^4 u|\bigr\}.
+\]
+Thus, the leading-order term in the error bound is \(\mathcal{O}(h^2)\).

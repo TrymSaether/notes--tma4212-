@@ -21,17 +21,100 @@ Men, hva om vi ikke har en eksakt løsning? Da kan vi bruke FDM til å tilnærme
 
 Differanseoperatorer er diskrete tilnærminger av deriverte og kan brukes til å konstruere differanseskjemaer for numerisk løsning av \gls{ode} og \gls{pde}.
 
-\begin{definition}{Grunnleggende differanseoperatorer}{}
-  La $u(x)$ være en tilstrekkelig glatt funksjon og $h > 0$ en steglengde. De fundamentale differanseoperatorene defineres som følger:
-  \begin{align}
-    \Delta_h u(x)   & = u(x + h) - u(x) \tag{Fremover differanse} \label{eq:forward_diff}                                \\
-    \nabla_h u(x)   & = u(x) - u(x - h) \tag{Bakover differanse} \label{eq:backward_diff}                                \\
-    \delta_h u(x)   & = u(x + h/2) - u(x - h/2) \tag{Sentral differanse} \label{eq:central_diff}                         \\
-    \delta_h^2 u(x) & = u(x + h) - 2u(x) + u(x - h) \tag{Andre ordens sentral differanse} \label{eq:second_central_diff} \\
-    \mu_h u(x)      & = \frac{1}{2} \left( u(x + h/2) + u(x - h/2) \right) \tag{Gjennomsnittsoperator} \label{eq:avg_op} \\
-    E_h u(x)        & = u(x + h) \tag{Skiftoperator} \label{eq:shift_op}
-  \end{align}
+\section{Grunnleggende differanseoperatorer}
+
+Differanseoperatorer er fundamentale byggeklosser for diskretisering av deriverte, og danner grunnlaget for numeriske metoder for differensiallikninger.
+
+\subsection{Fremover differanseoperator}
+\begin{definition}{Fremover differanse}{}
+  \begin{equation}
+    \Delta_h u(x) = u(x + h) - u(x) \label{eq:forward_diff}
+  \end{equation}
+  der $h > 0$ er steglengden.
 \end{definition}
+
+\begin{remark*}{}{}
+  Fremover differanse tilnærmer den første deriverte med nøyaktighet $O(h)$:
+  \begin{equation}
+    \frac{\Delta_h u(x)}{h} = u'(x) + \frac{h}{2}u''(x) + O(h^2)
+  \end{equation}
+\end{remark*}
+
+\subsection{Bakover differanseoperator}
+\begin{definition}{Bakover differanse}{}
+  \begin{equation}
+    \nabla_h u(x) = u(x) - u(x - h) \label{eq:backward_diff}
+  \end{equation}
+\end{definition}
+
+\begin{remark*}{}{}
+  Bakover differanse tilnærmer også den første deriverte med nøyaktighet $O(h)$, men bruker tidligere punkter:
+  \begin{equation}
+    \frac{\nabla_h u(x)}{h} = u'(x) - \frac{h}{2}u''(x) + O(h^2)
+  \end{equation}
+\end{remark*}
+
+\subsection{Sentral differanseoperator}
+\begin{definition}{Sentral differanse}{}
+  \begin{equation}
+    \delta_h u(x) = u(x + h/2) - u(x - h/2) \label{eq:central_diff}
+  \end{equation}
+\end{definition}
+
+\begin{remark*}{}{}
+  Sentral differanse gir en mer nøyaktig tilnærming av den første deriverte:
+  \begin{equation}
+    \frac{\delta_h u(x)}{h} = u'(x) + O(h^2)
+  \end{equation}
+  Dette gjør den til et foretrukket valg når høyere presisjon er nødvendig.
+\end{remark*}
+
+\subsection{Andre ordens sentral differanseoperator}
+\begin{definition}{Andre ordens sentral differanse}{}
+  \begin{equation}
+    \delta_h^2 u(x) = u(x + h) - 2u(x) + u(x - h) \label{eq:second_central_diff}
+  \end{equation}
+\end{definition}
+
+\begin{proposition}{Tilnærming til andre deriverte}{}
+  Andre ordens sentral differanseoperator gir en approksimering av den andre deriverte med nøyaktighet $O(h^2)$:
+  \begin{equation}
+    \frac{\delta_h^2 u(x)}{h^2} = u''(x) + O(h^2)
+  \end{equation}
+\end{proposition}
+
+\begin{remark*}{}{}
+  Denne operatoren er spesielt nyttig for numerisk løsning av elliptiske og parabolske partielle differensiallikninger, som varmeledningslikningen og Poissons likning.
+\end{remark*}
+
+\subsection{Gjennomsnittsoperator}
+\begin{definition}{Gjennomsnittsoperator}{}
+  \begin{equation}
+    \mu_h u(x) = \frac{1}{2} \left( u(x + h/2) + u(x - h/2) \right) \label{eq:avg_op}
+  \end{equation}
+\end{definition}
+
+\begin{remark*}{}{}
+  Gjennomsnittsoperatoren kan brukes til å konstruere differanseskjemaer med høyere nøyaktighet ved å kombinere fremover og bakover differanser.
+  Den kan også brukes til å lage differanseskjemaer med høyere nøyaktighet ved å kombinere fremover og bakover differanser.
+\end{remark*}
+
+\subsection{Skiftoperator}
+\begin{definition}{Skiftoperator}{}
+  \begin{equation}
+    E_h u(x) = u(x + h) \label{eq:shift_op}
+  \end{equation}
+\end{definition}
+
+\begin{remark*}{}{}
+  Skiftoperatoren kan brukes til å uttrykke alle andre differanseoperatorer, for eksempel:
+  \begin{align}
+    \Delta_h   & = E_h - I           \\
+    \nabla_h   & = I - E_{-h}        \\
+    \delta_h^2 & = E_h - 2I + E_{-h}
+  \end{align}
+  der $I$ er identitetsoperatoren, $Iu(x) = u(x)$.
+\end{remark*}
 
 \begin{theorem}{Differanseoperatorenes relasjoner}{}
   Differanseoperatorene er relatert til hverandre på følgende måter:
@@ -43,10 +126,10 @@ Differanseoperatorer er diskrete tilnærminger av deriverte og kan brukes til å
   der $I$ er identitetsoperatoren, $Iu(x) = u(x)$.
 \end{theorem}
 
-\begin{remark}
+\begin{remark*}{}{}
   Fremover- og bakover-differanseoperatorer er asymmetriske og gir første ordens nøyaktighet,
   mens sentral differanse er symmetrisk og gir andre ordens nøyaktighet ved tilnærming av første deriverte.
-\end{remark}
+\end{remark*}
 
 \begin{example}{Anvendelse av differanseoperatorer}{}
   For funksjonen $u(x) = x^2$ ved $x=1$ med $h=0.1$:

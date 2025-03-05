@@ -151,16 +151,16 @@ For å bruke elementmetoden (\glsentrysymbol{fem}) til å løse et \gls{pde}-pro
   Hvor:
 
   \begin{align*}
-    \symbf{K} &= \int_0^1 \symbf{\phi}' \symbf{\phi}'^T \, dx = 
+    \symbf{K} & = \int_0^1 \symbf{\phi}' \symbf{\phi}'^T \, dx =
     \begin{bmatrix}
-      1 & -1 & 0 & 0 & 0 & 0 \\
-      -1 & 2 & -1 & 0 & 0 & 0 \\
-      0 & -1 & 2 & -1 & 0 & 0 \\
-      0 & 0 & -1 & 2 & -1 & 0 \\
-      0 & 0 & 0 & -1 & 2 & -1 \\
-      0 & 0 & 0 & 0 & -1 & 1 \\
-    \end{bmatrix}\\
-    \symbf{F} &= - \bar{f} \int_0^1 \symbf{N}(x) dx
+      1  & -1 & 0  & 0  & 0  & 0  \\
+      -1 & 2  & -1 & 0  & 0  & 0  \\
+      0  & -1 & 2  & -1 & 0  & 0  \\
+      0  & 0  & -1 & 2  & -1 & 0  \\
+      0  & 0  & 0  & -1 & 2  & -1 \\
+      0  & 0  & 0  & 0  & -1 & 1  \\
+    \end{bmatrix}                                  \\
+    \symbf{F} & = - \bar{f} \int_0^1 \symbf{N}(x) dx
     = - \bar{f}
     \begin{bmatrix}
       0.1 \\ 0.2 \\ 0.2 \\ 0.2 \\ 0.2 \\ 0.1
@@ -562,5 +562,4 @@ Da får vi:
   \symbf{v}^T \symbf{F}                                         \\
   \symbf{K} \symbf{u} & = \symbf{F}
 \end{align*}
-
 

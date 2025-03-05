@@ -4,6 +4,7 @@
 \usepackage[acronym,symbols,nogroupskip]{glossaries-extra}
 
 \makeglossaries
+
 \input{glossary.tex}
 
 \title{Numerical Solution of Differential Equations\\by Difference Methods}
@@ -14,11 +15,14 @@
 \maketitle
 \tableofcontents
 
-\clearpage
+\newpage
 \include{chapters/FDM}
+\clearpage
 \include{chapters/FEM}
+\clearpage
 \include{chapters/lectures}
 
-% z\printglossaries
+
+\printglossary
 
 \end{document}

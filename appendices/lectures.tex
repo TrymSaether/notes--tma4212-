@@ -1,6 +1,7 @@
 \chapter{Forelesninger}
+\sloppy
 
-\section{Forelesning 8 (Tirsdag \date{28. januar 2025})}
+\section{Forelesning 8 (Tirsdag 28. januar 2025)}
 
 \begin{theorem}{Lax-Equivalence-Theorem}{}
   \[
@@ -197,7 +198,7 @@ The method is based on the Fourier analysis of the numerical solution.
     \abs{\psi}                 & = \abs{1 + 4r\sin^2\left(\frac{\beta h}{2}\right)} \leq 1 \iff r \leq \frac{1}{2}, \forall \beta \text{ and } \mu = 0
   \end{align*}
 \end{example}
-\section{Forelesning 9 (Mandag \date{3. februar 2025})}
+\section{Forelesning 9 (Mandag 3. februar 2025)}
 
 \paragraph{Von Neumann Stability Analysis}
 
@@ -378,7 +379,7 @@ The method is based on the Fourier analysis of the numerical solution.
   \draw[-,thick] (2,0) -- (0.5,2);
 
 \end{tikzpicture}
-\section{Forelesning 10 (Tirsdag \date{4. februar 2025})}
+\section{Forelesning 10 (Tirsdag 4. februar 2025)}
 
 \paragraph{Hyperbolic PDEs}
 
@@ -440,11 +441,11 @@ The method is based on the Fourier analysis of the numerical solution.
 \subparagraph{1st order equations}
 \begin{itemize}
   \item Density: \(u\)
-  \item Non-conservative: 
-  \begin{equation}
-  \label{eq:hb2}
-  u_t + a(x,t,u)u_x = b(x,t,u)
-  \end{equation}
+  \item Non-conservative:
+        \begin{equation}
+          \label{eq:hb2}
+          u_t + a(x,t,u)u_x = b(x,t,u)
+        \end{equation}
   \item Transport equation: \(u_t + au_x = 0\) where \(a\) is a constant.
         \[
           \dd{t} \int_{x_1}^{x_2} u(x,t) \, dx = \int_{x_1}^{x_2} u_t(x,t) \, dx = -\int_{x_1}^{x_2} (f(u))_x \, dx = f(u(x_1,t)) - f(u(x_2,t))
@@ -454,11 +455,11 @@ The method is based on the Fourier analysis of the numerical solution.
 
 \subparagraph{1st order system}
 \begin{itemize}
-  \item Non-conservative: 
-  \[
-  \label{eq:hb3}
-  \symbf{u_t} + A(\symbf{u}_x) = \symbf{b}\tag{3}
-  \]
+  \item Non-conservative:
+        \[
+          \label{eq:hb3}
+          \symbf{u_t} + A(\symbf{u}_x) = \symbf{b}\tag{3}
+        \]
   \item Conservative: \[\symbf{u_t} + (\symbf{f}(\symbf{u}))_x = 0\]
         This is hyperbolic if \(A\) is diagonalizable with real eigenvalues.
         \[
@@ -541,7 +542,7 @@ Initial values: \(\begin{cases} x(t_0) = x_0 \\ v(t_0) = u(x_0, t_0) \end{cases}
   \end{align*}
 
 \end{example}
-\section{Forelesning 11 (Mandag \date{10. februar 2025})}
+\section{Forelesning 11 (Mandag 10. februar 2025)}
 
 \paragraph{What about systems?}
 
@@ -742,7 +743,7 @@ Then we get the stability condition:
 \end{align*}
 
 \clearpage
-\section{Forelesning 12 (Tirsdag\date{11. februar 2025})}
+\section{Forelesning 12 (Tirsdag11. februar 2025)}
 
 \begin{definition}{Courant-Friedrichs-Lewy condition (CFL)}{cfl}
   The CFL condition is a necessary condition for the stability of a numerical scheme for solving PDEs.
@@ -956,7 +957,7 @@ For the complete problem we get:
   \end{align*}
 
 \end{example}
-\section{Forelesning 13 (Mandag \date{17. februar 2025})}
+\section{Forelesning 13 (Mandag 17. februar 2025)}
 
 \subsection{Hyperbolic Conservation Laws}
 
@@ -1251,7 +1252,7 @@ where
   \end{cases}
 \]
 Here, \(a(u) = \frac{d}{du}f(u)\). The difference between the two choices mainly lies in how you approximate \(a(u)\) at the half-integer points.
-\section{Forelesning 14 (Tirsdag \date{18. februar 2025})}
+\section{Forelesning 14 (Tirsdag 18. februar 2025)}
 \subsection{Elliptic PDEs}\footnote{Section 6 in B.O.}
 
 \begin{figure}[H]
@@ -1521,7 +1522,7 @@ Hence, \(\mathbf{A}\) is large but \emph{sparse} and \emph{banded}. For example,
   \]
   It approximates each interior grid point \(U_{i,j}\) using its four neighbors and has a local truncation error of \(\mathcal{O}(h^2)\).
 \end{definition}
-\section{Forelesning 15 (Mandag \date{24. februar 2025})}
+\section{Forelesning 15 (Mandag 24. februar 2025)}
 \subsection{Poisson's Equation on the Unit Square with a Regular Grid}
 
 Let \(\Omega = (0,1)\times(0,1)\). We consider the boundary \(\partial\Omega\) to be the edges of the unit square. Define the operator \(\mathcal{L}u = \Delta u = u_{xx} + u_{yy}\), and assume
@@ -1762,7 +1763,7 @@ and one can check
 Thus, the leading-order term in the error bound is \(\mathcal{O}(h^2)\).
 
 \clearpage
-\section{Forelesning 16 (Tirsdag \date{25. februar 2025})}
+\section{Forelesning 16 (Tirsdag 25. februar 2025)}
 \subsection{Construction of schemes on irregular grids}
 \begin{itemize}
   \item A general approach for constructing schemes where the LTE is given.
@@ -1869,61 +1870,61 @@ We already know \(U_{W^\prime} = g(x_p + h \xi, y_p)\) and \(U_{N^\prime} = g(x_
 
 Now we solve for:
 \begin{align*}
-  \Delta u &= \partial_x^2 u + \partial_y^2 u = f \\
-  &U_S + U_N + U_W + U_E - 4U_p \quad \text{if } S,N,W,E \in \mathbb{G} \\
-  \partial_x^2 u_p &= -\alpha_p u_p + \alpha_{W^\prime}u_{W^\prime} + \alpha_E u_E - \tau_p^\star \\
-  \partial_y^2 u_p &= -\beta_p u_p + \beta_{N^\prime}u_{N^\prime} + \beta_S u_S - \tau_N^\star
+  \Delta u         & = \partial_x^2 u + \partial_y^2 u = f                                         \\
+                   & U_S + U_N + U_W + U_E - 4U_p \quad \text{if } S,N,W,E \in \mathbb{G}          \\
+  \partial_x^2 u_p & = -\alpha_p u_p + \alpha_{W^\prime}u_{W^\prime} + \alpha_E u_E - \tau_p^\star \\
+  \partial_y^2 u_p & = -\beta_p u_p + \beta_{N^\prime}u_{N^\prime} + \beta_S u_S - \tau_N^\star
 \end{align*}
 
 where:
 \begin{align*}
-  \alpha_{W^\prime} &= \frac{2}{h^2}\frac{1}{\xi (\xi + 1)}, &
-  \alpha_E &= \frac{2}{h^2}\frac{1}{\xi + 1}, &
-  \alpha_p &= \frac{2}{h^2}\frac{1}{\xi} \\
-  \beta_{N^\prime} &= \frac{2}{h^2}\frac{1}{\eta + 1}, &
-  \beta_S &= \frac{2}{h^2}\frac{1}{\eta (\eta + 1)}, &
-  \beta_p &= \frac{2}{h^2}\frac{1}{\eta}
+  \alpha_{W^\prime} & = \frac{2}{h^2}\frac{1}{\xi (\xi + 1)},   &
+  \alpha_E          & = \frac{2}{h^2}\frac{1}{\xi + 1},         &
+  \alpha_p          & = \frac{2}{h^2}\frac{1}{\xi}                \\
+  \beta_{N^\prime}  & = \frac{2}{h^2}\frac{1}{\eta + 1},        &
+  \beta_S           & = \frac{2}{h^2}\frac{1}{\eta (\eta + 1)}, &
+  \beta_p           & = \frac{2}{h^2}\frac{1}{\eta}
 \end{align*}
 
 The truncation error is:
 \begin{align*}
-  \tau_p &= \tau_p^\star + \tau_N^\star = \frac{h}{3}\left[(1-\xi)\partial_x^3 u_p + (1-\eta)\partial_y^3 u_p\right] + \mathcal{O}(h^2)
+  \tau_p & = \tau_p^\star + \tau_N^\star = \frac{h}{3}\left[(1-\xi)\partial_x^3 u_p + (1-\eta)\partial_y^3 u_p\right] + \mathcal{O}(h^2)
 \end{align*}
 
 With consistency and non-negativity conditions:
 \begin{align*}
-  \alpha_{pQ_i} &\geq 0, \quad \alpha_{p^2} \geq 0 \\
-  \alpha_{pp} &= \sum_{i=1}^{s_p} \alpha_{pQ_i} \tag{consistency}
+  \alpha_{pQ_i} & \geq 0, \quad \alpha_{p^2} \geq 0                  \\
+  \alpha_{pp}   & = \sum_{i=1}^{s_p} \alpha_{pQ_i} \tag{consistency}
 \end{align*}
 
 \paragraph{Neumann boundary conditions}
 \begin{align*}
-  \frac{\partial u}{\partial \vec{n}} &= g \text{ on } \partial\Omega_N \subset \partial\Omega \\
-  \vec{n} &= \left[n_x, n_y\right], \quad \frac{\partial u_p}{\partial \vec{n}} = n_x \frac{\partial u_p}{\partial x} + n_y \frac{\partial u_p}{\partial y} = \vec{n} \cdot \nabla u_p \\
-  \frac{\partial u_p}{\partial \vec{n}} &= \frac{1}{d}\left[u_{Q^\prime} - u_p\right] + \mathcal{O}(d) \\
-  u_{Q^\prime} &= u_R + \frac{h^\prime}{h}\left(u_Q - u_R\right) + \mathcal{O}(h^2) \\
-  g_p &= \frac{1}{d}\left(U_R + \frac{h^\prime}{h}\left(U_Q - U_R\right) - U_p\right), \quad \tau_p \approx \mathcal{O}(h) \\
-  B_n U_p &= \frac{1}{d}\left(-U_p + (1-\frac{h^\prime}{h})U_R + \frac{h^\prime}{h}U_Q\right)\\ 
-  \alpha_{pp} &= \frac{1}{d}, \quad \alpha_{pR} = \frac{1}{d}\left(1-\frac{h^\prime}{h}\right), \quad \alpha_{pQ} = \frac{1}{d}\frac{h^\prime}{h} \\
-  \alpha_{pp} &= \alpha_{pR} + \alpha_{pQ} \\
-  0 \le & h^\prime \le h \implies \alpha_{pR}, \alpha_{pQ} \ge 0
-  \end{align*}
+  \frac{\partial u}{\partial \vec{n}}   & = g \text{ on } \partial\Omega_N \subset \partial\Omega                                                                                                                     \\
+  \vec{n}                               & = \left[n_x, n_y\right], \quad \frac{\partial u_p}{\partial \vec{n}} = n_x \frac{\partial u_p}{\partial x} + n_y \frac{\partial u_p}{\partial y} = \vec{n} \cdot \nabla u_p \\
+  \frac{\partial u_p}{\partial \vec{n}} & = \frac{1}{d}\left[u_{Q^\prime} - u_p\right] + \mathcal{O}(d)                                                                                                               \\
+  u_{Q^\prime}                          & = u_R + \frac{h^\prime}{h}\left(u_Q - u_R\right) + \mathcal{O}(h^2)                                                                                                         \\
+  g_p                                   & = \frac{1}{d}\left(U_R + \frac{h^\prime}{h}\left(U_Q - U_R\right) - U_p\right), \quad \tau_p \approx \mathcal{O}(h)                                                         \\
+  B_n U_p                               & = \frac{1}{d}\left(-U_p + (1-\frac{h^\prime}{h})U_R + \frac{h^\prime}{h}U_Q\right)                                                                                          \\
+  \alpha_{pp}                           & = \frac{1}{d}, \quad \alpha_{pR} = \frac{1}{d}\left(1-\frac{h^\prime}{h}\right), \quad \alpha_{pQ} = \frac{1}{d}\frac{h^\prime}{h}                                          \\
+  \alpha_{pp}                           & = \alpha_{pR} + \alpha_{pQ}                                                                                                                                                 \\
+  0 \le                                 & h^\prime \le h \implies \alpha_{pR}, \alpha_{pQ} \ge 0
+\end{align*}
 
-  \subsubsection{What we should know for FDM's}
-  
-  In FDM with elliptic problems we should know how to (Linear equations):
-  \begin{itemize}
-    \item Given the PDE, Domain\(\Omega\), and boundary conditions \(\partial\Omega\).
-    \item Given a grid \(\mathbb{G}\).
-    \item Construct the scheme \(\mathcal{L}_h U_p\).
-    \item Fint the local truncation error \(\tau_p\).
-    \item Error an error analysis.
-    \item Implementation of the scheme.
-  \end{itemize}
+\subsubsection{What we should know for FDM's}
+
+In FDM with elliptic problems we should know how to (Linear equations):
+\begin{itemize}
+  \item Given the PDE, Domain\(\Omega\), and boundary conditions \(\partial\Omega\).
+  \item Given a grid \(\mathbb{G}\).
+  \item Construct the scheme \(\mathcal{L}_h U_p\).
+  \item Fint the local truncation error \(\tau_p\).
+  \item Error an error analysis.
+  \item Implementation of the scheme.
+\end{itemize}
 
 \
-\section{Forelesning 17 (Mandag \date{3. mars 2025}) \texorpdfstring{\color{red}{Ikke møtt}}{Ikke møtt}}
-\section{Forelesning 18 (Tirsdag \date{4. mars 2025})}
+\section{Forelesning 17 (Mandag 3. mars 2025) \texorpdfstring{\color{red}{Ikke møtt}}{Ikke møtt}}
+\section{Forelesning 18 (Tirsdag 4. mars 2025)}
 Given the (PDE) \(-u_{xx} = f\) on \(\Omega = (0,1)\) with boundary conditions \(u(0) = u(1) = 0\).
 \begin{itemize}
   \item Multiply by a test function \(v\).
@@ -1931,10 +1932,10 @@ Given the (PDE) \(-u_{xx} = f\) on \(\Omega = (0,1)\) with boundary conditions \
   \item Use partial integration to get rid of the second derivative \(u_{xx}\).
 \end{itemize}
 \begin{align*}
-  \int_0^1 -u_{xx} v \,dx &= \int_0^1 f v \,dx \\
-  -\int_0^1 u_x v_x \,dx + [u_x v]_0^1 &= \int_0^1 f v \,dx \\
-  -\int_0^1 u_x v_x \,dx + u_x(1)v(1) - u_x(0)v(0) &= \int_0^1 f v \,dx \\
-  -\int_0^1 u_x v_x \,dx &= \int_0^1 f v \,dx
+  \int_0^1 -u_{xx} v \,dx                          & = \int_0^1 f v \,dx \\
+  -\int_0^1 u_x v_x \,dx + [u_x v]_0^1             & = \int_0^1 f v \,dx \\
+  -\int_0^1 u_x v_x \,dx + u_x(1)v(1) - u_x(0)v(0) & = \int_0^1 f v \,dx \\
+  -\int_0^1 u_x v_x \,dx                           & = \int_0^1 f v \,dx
 \end{align*}
 
 If we choose \(v\) s.t. \(v(0) = v(1) = 0\), we need to find:
@@ -1944,14 +1945,14 @@ If we choose \(v\) s.t. \(v(0) = v(1) = 0\), we need to find:
 
 But how do we choose \(V\)? The integrals should exist!
 \[
-f \in \mathrm{L}^2(\Omega), \quad v \in \mathrm{L}^2(\Omega), \quad u_x, v_x \in \mathrm{L}^2(\Omega)
+  f \in \mathrm{L}^2(\Omega), \quad v \in \mathrm{L}^2(\Omega), \quad u_x, v_x \in \mathrm{L}^2(\Omega)
 \]
 
 Then we can choose \(V = \mathrm{H}^1(\Omega)\), which is the Sobolev space of functions with square integrable derivatives and vanishing boundary values.
 
 \begin{align*}
-  \mathrm{H}^1_0 (\Omega) &= \{v\in \mathrm{H}^1(\Omega) \mid  v(0) = v(1) = 0\} \\
-  \mathrm{H}^1(\Omega) &= \{v \mid v, v_x \in \mathrm{L}^2(\Omega)\}
+  \mathrm{H}^1_0 (\Omega) & = \{v\in \mathrm{H}^1(\Omega) \mid  v(0) = v(1) = 0\} \\
+  \mathrm{H}^1(\Omega)    & = \{v \mid v, v_x \in \mathrm{L}^2(\Omega)\}
 \end{align*}
 
 \(\mathrm{H}^1(\Omega)\) and \(\mathrm{H}^1_0 (\Omega)\) are Hilbert spaces with the inner product:
@@ -1960,7 +1961,7 @@ Then we can choose \(V = \mathrm{H}^1(\Omega)\), which is the Sobolev space of f
 \]
 \(\mathrm{H}^1_0 (\Omega)\) is a closed subspace of \(\mathrm{H}^1(\Omega)\):
 \[
-\mathrm{H}^1_0 (\Omega) \subset \mathrm{H}^1(\Omega)
+  \mathrm{H}^1_0 (\Omega) \subset \mathrm{H}^1(\Omega)
 \]
 
 We also have a \emph{norm} defined by:
@@ -1975,16 +1976,16 @@ We also have a \emph{norm} defined by:
 
 \subsection{Abstract Formulation}
 \[
-\boxed{\text{Find }u\in V\text{ s.t. }a(u,v) = F(v)\text{ for all }v\in V}
+  \boxed{\text{Find }u\in V\text{ s.t. }a(u,v) = F(v)\text{ for all }v\in V}
 \]
 where \(\symbf{v}\) is the test function and \(\symbf{u}\) is the trial function (solution).
 
 Let \(V = \mathrm{H}^1_0 (\Omega)\) and \(\Omega = (0,1)\).
 \[
-a(u,v) = \langle u_x, v_x \rangle_{\mathrm{L}^2} = \int_0^1 u_x v_x \,dx
+  a(u,v) = \langle u_x, v_x \rangle_{\mathrm{L}^2} = \int_0^1 u_x v_x \,dx
 \]
 \[
-F(v) = \langle f, v \rangle_{\mathrm{L}^2} = \int_0^1 f v \,dx
+  F(v) = \langle f, v \rangle_{\mathrm{L}^2} = \int_0^1 f v \,dx
 \]
 \begin{theorem}{Lax-Milgram}{laxmilgram}
   Let \(V\) be a \emph{Hilbert space} with inner product \(\inner{\cdot, \cdot}\) and norm \(\norm*{\cdot}_V\). Let \(a: V\times V\to \R\) be a bilinear form and \(F: V\to \R\) be a linear functional. If:
@@ -2003,7 +2004,7 @@ F(v) = \langle f, v \rangle_{\mathrm{L}^2} = \int_0^1 f v \,dx
           \]
   \end{itemize}
   Where \(C_a, C_c, C_F > 0\).
-  
+
   \medskip
 
   Then there exists a unique solution \(u\in V\) to the problem:
@@ -2016,4 +2017,349 @@ F(v) = \langle f, v \rangle_{\mathrm{L}^2} = \int_0^1 f v \,dx
   \]
 \end{theorem}
 
+\section{Forelesning 21 (Mandag 11. mars 2025)}
 
+\subsection{Finite Element Method (FEM)}
+
+\begin{itemize}
+  \item Find $u\in V$ s.t. \(a(u,v) = F(v)\) for all \(v\in V\).
+  \item Find $u\in V_h$ s.t. \(a(u_h,v) = F(v)\) for all \(v\in V_h\), when \(V_h\in\spann\{\phi_1,\phi_2,\dots,\phi_n\}\).
+  \item Solve \(A\vec{u} = \vec{f}\) for \(\vec{u}\), where
+        \[
+          A_{ij} = a(\phi_i,\phi_j), \quad \vec{f}_i = F(\phi_i)
+        \]
+\end{itemize}
+
+\subsection{Finite Element Space}
+Let's construct a finite element space on a one-dimensional domain:
+
+\begin{itemize}
+  \item First, we partition the domain $\Omega = [0,1]$ into $M$ subintervals:
+        \[
+          0 = x_0 < x_1 < \dots < x_{M-1} < x_M = 1
+        \]
+  \item Each subinterval $K_j = [x_j, x_{j+1}]$ for $j = 0,1,\dots,M-1$ forms an element.
+  \item The length of each element is $h_j = x_{j+1} - x_j$. For uniform meshes, $h_j = h = \frac{1}{M}$.
+  \item We define the finite element space $V_h^r$ as:
+        \[
+          V_h^r = \{v \in C^0([0,1]) : v|_{K_j} \in \mathbb{P}_r \text{ for all } j,\, v(0) = v(1) = 0\}
+        \]
+        where $\mathbb{P}_r$ is the space of polynomials of degree $\leq r$.
+  \item This space $V_h^r \subset H^1_0(\Omega)$ consists of continuous, piecewise polynomial functions that vanish at the boundary.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.2]
+    % Draw x-axis with nodes
+    \draw[->] (-0.2,0) -- (6.2,0) node[right] {$x$};
+
+    % Draw nodes/grid points
+    \foreach \x/\i in {0/0, 1/1, 2/2, 3/3, 4/4, 5/5, 6/6} {
+        \filldraw[black] (\x,0) circle (1.5pt);
+        \node[below] at (\x,-0.1) {$x_{\i}$};
+      }
+
+    % Label elements
+    \foreach \x/\i in {0.5/0, 1.5/1, 2.5/2, 3.5/3, 4.5/4, 5.5/5} {
+        \node[above] at (\x, 0.1) {$K_{\i}$};
+      }
+
+    % Example of linear basis function
+    \draw[thick, blue] (1.9,0) -- (2,1) -- (2.1,0);
+    \node[blue] at (2,1.2) {$\phi_2(x)$};
+
+    % Another example for higher-order basis
+    \draw[thick, red, domain=3:5, samples=30] plot (\x, {0.6*sin((\x-3)*180/2)});
+    \node[red] at (3.9,0.7) {Quadratic element};
+
+    % Draw a brace for h_j
+    \draw[decorate, decoration={brace, amplitude=5pt}] (4,0.05) -- (5,0.05) node[midway, above=6pt] {$h_4$};
+  \end{tikzpicture}
+  \caption{Partition of domain into finite elements with examples of basis functions}
+\end{figure}
+
+\subsection{Basis Functions}
+For $r=1$ (linear elements), we can construct a basis explicitly:
+
+\begin{itemize}
+  \item Define "hat functions" $\phi_j(x)$ for $j = 1,2,\dots,M-1$:
+        \[
+          \phi_j(x) =
+          \begin{cases}
+            \frac{x - x_{j-1}}{h_{j-1}} & \text{if } x \in [x_{j-1}, x_j] \\
+            \frac{x_{j+1} - x}{h_j}     & \text{if } x \in [x_j, x_{j+1}] \\
+            0                           & \text{otherwise}
+          \end{cases}
+        \]
+  \item These functions satisfy: $\phi_j(x_i) = \delta_{ij}$ (equals 1 at node $j$ and 0 at all other nodes).
+  \item The space $V_h^1 = \text{span}\{\phi_1, \phi_2, \ldots, \phi_{M-1}\}$.
+  \item For a function $u_h \in V_h^1$, we can write:
+        \[
+          u_h(x) = \sum_{j=1}^{M-1} u_j \phi_j(x)
+        \]
+        where $u_j = u_h(x_j)$ are the nodal values (degrees of freedom).
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+    % Draw x-axis
+    \draw[->] (-0.2,0) -- (8.2,0) node[right] {$x$};
+
+    % Draw nodes
+    \foreach \x/\i in {0/0, 1/1, 2/2, 3/3, 4/4, 5/5, 6/6, 7/7, 8/8} {
+        \filldraw[black] (\x,0) circle (1.5pt);
+        \node[below] at (\x,-0.1) {$x_{\i}$};
+      }
+
+    % Draw hat functions
+    \draw[thick, blue] (0,0) -- (1,1) -- (2,0);
+    \node[blue, above] at (1,1) {$\phi_1$};
+
+    \draw[thick, red] (1,0) -- (2,1) -- (3,0);
+    \node[red, above] at (2,1) {$\phi_2$};
+
+    \draw[thick, green!60!black] (2,0) -- (3,1) -- (4,0);
+    \node[green!60!black, above] at (3,1) {$\phi_3$};
+
+    \draw[thick, orange] (6,0) -- (7,1) -- (8,0);
+    \node[orange, above] at (7,1) {$\phi_7$};
+
+    % Draw dots to indicate more basis functions
+    \node at (5,0.5) {$\cdots$};
+  \end{tikzpicture}
+  \caption{Linear basis functions (hat functions) for the finite element space $V_h^1$}
+\end{figure}
+
+\subsection{Higher Order Elements}
+For $r > 1$, we need additional basis functions:
+
+\begin{itemize}
+  \item For quadratic elements ($r=2$), we introduce additional nodes at the midpoints $x_{j+1/2} = \frac{x_j + x_{j+1}}{2}$.
+  \item Each element then has 3 nodes: two endpoints and one midpoint.
+  \item The basis consists of quadratic functions, allowing for more accurate approximations.
+  \item The dimension of $V_h^2$ is $2M-1$ (with $M-1$ vertex nodes and $M$ midpoint nodes).
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=2.0]
+    % Grid and axes
+    \draw[step=1cm,gray!20] (-0.5,-0.2) grid (4.5,1.8);
+    \draw[->] (-0.5,0) -- (4.8,0) node[right] {$x$};
+    \draw[->] (0,-0.2) -- (0,2) node[above] {$\phi(x)$};
+
+    % Element boundaries
+    \foreach \x in {0,1,2,3,4} {
+        \draw[dashed, gray] (\x,-0.1) -- (\x,1.8);
+        \node[below] at (\x,-0.2) {$x_{\x}$};
+      }
+
+    % Nodes with different styles
+    \foreach \x in {0,1,2,3,4} {
+        \filldraw[black] (\x,0) circle (2pt) node[below right] {$v_{\x}$};
+      }
+
+    % Midpoint nodes
+    \foreach \x/\i in {0.5/0.5, 1.5/1.5, 2.5/2.5, 3.5/3.5} {
+        \filldraw[blue] (\x,0) circle (2pt) node[below right, scale=0.8] {$m_{\i}$};
+      }
+
+    % Linear basis function (for comparison)
+    \draw[thick, gray, dashed, domain=0:2] plot (\x, {max(0,1-abs(\x-1))});
+    \node[gray, left] at (0.4,0.4) {Linear};
+
+    % Quadratic basis function at vertex x_1
+    \draw[thick, red, domain=0:2] plot (\x, {\x*(2-\x)});
+    \node[red, above left] at (1,1) {$\phi_{v_1}(x)$};
+
+    % Quadratic basis function at midpoint x_1.5
+    \draw[thick, blue, domain=1:2] plot (\x, {4*(\x-1)*(2-\x)});
+    \draw[thick, blue, domain=1:2, samples=30] plot (\x, {4*(\x-1)*(2-\x)}) node[right, blue] at (2,0) {$\phi_{m_{1.5}}(x)$};
+
+    % Annotations
+    \draw[<->, thick] (1,1.1) -- (1,0) node[midway, right] {$\phi_{v_1}(x_1)=1$};
+    \draw[<->, thick] (1.5,1.1) -- (1.5,0) node[midway, right] {$\phi_{m_{1.5}}(x_{1.5})=1$};
+
+    % Legend
+    \node at (3.8,1.6) [draw, align=left] {
+      \textcolor{black}{$\bullet$} Vertex nodes\\
+      \textcolor{blue}{$\bullet$} Midpoint nodes\\
+      \textcolor{red}{—} Quadratic vertex basis\\
+      \textcolor{blue}{—} Quadratic midpoint basis\\
+      \textcolor{gray}{- -} Linear basis
+    };
+  \end{tikzpicture}
+  \caption{Comparison of linear and quadratic basis functions. The quadratic elements use additional midpoint nodes, allowing for curved functions that provide higher accuracy. Each basis function equals 1 at its corresponding node and 0 at all other nodes.}
+\end{figure}
+
+\subsection{Assembly of the Linear System}
+To compute the solution $u_h \in V_h^r$, we need to:
+
+\begin{itemize}
+  \item Express $u_h = \sum_{j=1}^N U_j \phi_j(x)$, where $N$ is the dimension of $V_h^r$.
+  \item For linear elements on a uniform mesh, $N = M-1$.
+  \item Insert this into the variational form: Find $u_h \in V_h^r$ such that
+        \[
+          a(u_h, v_h) = F(v_h) \quad \forall v_h \in V_h^r
+        \]
+  \item Testing with each basis function $\phi_i$ leads to a linear system:
+        \[
+          \sum_{j=1}^N a(\phi_j, \phi_i) U_j = F(\phi_i), \quad i = 1,2,\ldots,N
+        \]
+  \item The resulting system matrix $A_{ij} = a(\phi_j, \phi_i)$ is sparse, as basis functions with non-overlapping support lead to zero entries.
+\end{itemize}
+
+For our model problem with $a(u,v) = \int_0^1 u_x v_x \, dx$, we compute:
+
+\[
+  A_{ij} = a(\phi_j, \phi_i) = \int_0^1 \phi_j'(x) \phi_i'(x) \, dx
+\]
+
+For linear elements, this can be computed explicitly, yielding a tridiagonal matrix.
+
+\subsection{Reference Element \texorpdfstring{$\hat{K}$}{K}}
+
+In the finite element method, a powerful technique is to define shape functions and perform calculations on a standard "reference element" $\hat{K}$ rather than on each physical element. This simplifies implementation and numerical integration.
+
+\subsubsection{Reference Element in 1D}
+For one-dimensional problems, we typically choose the reference element as:
+\[
+  \hat{K} = [0,1]
+\]
+
+\paragraph{Affine Mapping}
+Each physical element $K_j = [x_j, x_{j+1}]$ can be mapped to the reference element $\hat{K}$ through an affine transformation:
+\[
+  F_j(\hat{x}) = x_j + h_j\hat{x}
+\]
+where $\hat{x} \in [0,1]$ is the coordinate in the reference element, and $h_j = x_{j+1} - x_j$ is the length of the physical element.
+
+The inverse mapping is:
+\[
+  F_j^{-1}(x) = \frac{x - x_j}{h_j}
+\]
+
+\paragraph{Shape Functions on the Reference Element}
+Instead of defining shape functions directly on each element, we define them once on the reference element:
+
+\begin{itemize}
+  \item Linear shape functions on $\hat{K}$:
+        \[
+          \hat{\phi}_0(\hat{x}) = 1-\hat{x}, \quad \hat{\phi}_1(\hat{x}) = \hat{x}
+        \]
+
+  \item Quadratic shape functions on $\hat{K}$:
+        \[
+          \hat{\phi}_1(\hat{x}) = -4\hat{x}^2 + 4\hat{x}, \quad
+          \hat{\phi}_2(\hat{x}) = 2\hat{x}^2 - \hat{x}
+        \]
+\end{itemize}
+
+\paragraph{Mapping Shape Functions}
+The shape functions on a physical element are defined via the reference element as:
+\[
+  \phi_j(x) = \hat{\phi}_j(F_j^{-1}(x)) \quad \text{for } x \in K_j
+\]
+where $j$ indicates the element number. The shape functions $\phi_j(x)$ are piecewise linear or quadratic functions that are non-zero only on the element $K_j$.
+\begin{align*}
+  \phi_j(x)     & = \hat{\phi}_j(F_j^{-1}(x))     \\
+  \phi_{j+1}(x) & = \hat{\phi}_{j+1}(F_j^{-1}(x))
+\end{align*}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=1.2]
+    % Reference element
+    \draw[thick] (0,0) -- (1,0);
+    \node[below] at (0,-0.1) {$0$};
+    \node[below] at (1,-0.1) {$1$};
+    \node[above] at (0.5,0) {$\hat{K}$};
+
+    % Physical element
+    \draw[thick] (4,0) -- (7,0);
+    \node[below] at (4,-0.1) {$x_j$};
+    \node[below] at (7,-0.1) {$x_{j+1}$};
+    \node[above] at (5.5,0) {$K_j$};
+
+    % Mapping arrow
+    \draw[<->, thick, blue] (1.5,0) -- (3.5,0);
+    \node[above] at (2.5,0) {$F_j$};
+
+    % Linear shape functions on reference
+    \draw[red, domain=0:1, samples=20] plot (\x, {1-\x});
+    \draw[red, domain=0:1, samples=20] plot (\x, {\x});
+
+    % Corresponding shape functions on physical element
+    \draw[red, domain=4:7, samples=20] plot (\x, {(7-\x)/3});
+    \draw[red, domain=4:7, samples=20] plot (\x, {(\x-4)/3});
+
+    % Labels
+    \node[red] at (0.25,0.6) {$\hat{\phi}_0$};
+    \node[red] at (0.75,0.6) {$\hat{\phi}_1$};
+    \node[red] at (4.8,0.8) {$\phi_j$};
+    \node[red] at (6.2,0.8) {$\phi_{j+1}$};
+  \end{tikzpicture}
+  \caption{Mapping between reference element $\hat{K}$ and physical element $K_j$}
+\end{figure}
+
+\paragraph{Integration Using Reference Element}
+When computing element matrices and vectors, we transform integrals over physical elements to integrals over the reference element:
+\[
+  \int_{K_j} f(x)\,dx = \int_{\hat{K}} f(F_j(\hat{x}))|J_j|\,d\hat{x}
+\]
+where $|J_j| = h_j$ is the determinant of the Jacobian of the mapping.
+
+For our model problem, the element stiffness matrix entries become:
+\[
+  A_{ij}^K = \int_{K} \phi_i'(x)\phi_j'(x)\,dx = \int_{\hat{K}} \hat{\phi}_i'(\hat{x})\hat{\phi}_j'(\hat{x})\frac{1}{h_K}\,d\hat{x}
+\]
+
+
+\paragraph{Advantages}
+\begin{itemize}
+  \item Quadrature rules need to be defined only once on the reference element
+  \item Shape functions and their derivatives are pre-computed on $\hat{K}$
+  \item Code structure becomes simpler and more modular
+  \item Easily extends to higher dimensions and higher-order elements
+\end{itemize}
+
+\begin{example}{Linear Element Computation}{}
+  For linear elements with $\hat{\phi}_0(\hat{x}) = 1-\hat{x}$ and $\hat{\phi}_1(\hat{x}) = \hat{x}$:
+
+  \begin{align*}
+    \hat{\phi}_0'(\hat{x}) & = -1 \\
+    \hat{\phi}_1'(\hat{x}) & = 1
+  \end{align*}
+
+  The element stiffness matrix on the reference element is:
+  \[
+    \hat{A} = \int_0^1
+    \begin{bmatrix}
+      (-1)(-1) & (-1)(1) \\
+      (1)(-1)  & (1)(1)
+    \end{bmatrix}
+    \, d\hat{x} =
+    \begin{bmatrix}
+      1  & -1 \\
+      -1 & 1
+    \end{bmatrix}
+  \]
+
+  For a physical element $K_j$ of length $h_j$, the element stiffness matrix is:
+  \[
+    A^{K_j} = \frac{1}{h_j}\hat{A} = \frac{1}{h_j}
+    \begin{bmatrix}
+      1  & -1 \\
+      -1 & 1
+    \end{bmatrix}
+  \]
+
+  This approach forms the foundation for efficient implementation of finite element methods across different element types and problem dimensions.
+  
+  \begin{align*}
+    \phi_j^K(x)           & = \hat{\phi}_j(F_K^{-1}(x)) \\
+    \hat{\phi}_0(\hat{x}) & = 2\hat{x}^2 - 3\hat{x} + 1
+  \end{align*}
+\end{example}
